@@ -1,9 +1,11 @@
 package javaben.sort;
 
+import javaben.Callable;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Sortificator {
+public class Sortificator implements Callable {
     /**
      * @param unsortedList list of positive integers
      * @return greatest to smallest
@@ -45,5 +47,15 @@ public class Sortificator {
     }
     public static List<Integer> nativeSort(List<Integer> unsortedList) {
         return null;
+    }
+
+    @Override
+    public void init() {
+
+    }
+
+    @Override
+    public void compute(long n) {
+
     }
 }

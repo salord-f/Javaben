@@ -3,6 +3,7 @@ package javaben;
 public class Benchmark {
 
     public static long bench(Callable method, long n) {
+        method.init();
         long startTime = System.nanoTime();
         method.compute(n);
         long endTime = System.nanoTime();
