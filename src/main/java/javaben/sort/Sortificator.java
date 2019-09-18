@@ -3,7 +3,7 @@ package javaben.sort;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Sortifinator {
+public class Sortificator {
     /**
      * @param unsortedList list of positive integers
      * @return greatest to smallest
@@ -25,7 +25,11 @@ public class Sortifinator {
         return res;
     }
     public static List<Integer> insertionSort(List<Integer> unsortedList) {
-        return null;
+        List<Integer> res = new ArrayList<>();
+        while (unsortedList.size() > 0) {
+
+        }
+        return res;
     }
     public static List<Integer> fusionSort(List<Integer> unsortedList) {
         return null;
