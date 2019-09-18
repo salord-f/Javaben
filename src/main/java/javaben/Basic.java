@@ -1,3 +1,5 @@
+package javaben;
+
 public class Basic {
 
     public static double emptyFor(int x) {
