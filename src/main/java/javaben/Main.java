@@ -1,6 +1,7 @@
 package javaben;
 
-import javaben.basic.Addition;
+import javaben.basic.*;
+import javaben.sort.*;
 
 public class Main {
 
@@ -9,8 +10,8 @@ public class Main {
 
         long n = (long) Math.pow(10, 9);
         for (int i = 0; i < 10; i++) {
-            total = total + Benchmark.bench(new Addition(), n);
-            total = total - Benchmark.bench(new Empty(), n);
+            total = total + Benchmark.bench(new InsertionSort(), n);
+            total = total - Benchmark.bench(new EmptySort(), n);
         }
 
         System.out.println(total);

@@ -8,7 +8,6 @@ public class EmptySort extends Sort {
     public void compute(long n) {
         for (int i = 0; i < n; i++) {
             List<Integer> copiedList = new ArrayList<>(unsortedList);
-            List<Integer> sortedList = new ArrayList<>();
         }
     }
 }
