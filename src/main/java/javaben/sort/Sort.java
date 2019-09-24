@@ -4,6 +4,8 @@ import javaben.Callable;
 import javaben.Generator;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public abstract class Sort implements Callable {
@@ -16,11 +18,7 @@ public abstract class Sort implements Callable {
     }
 
     protected void swap(int index1, int index2) {
-        if (index1 != index2) {
-            int tmp = copiedList.get(index2);
-            copiedList.set(index2, copiedList.get(index1));
-            copiedList.set(index1, tmp);
-        }
+        Collections.swap(copiedList, index1, index2);
     }
 
     protected void insert(int former_index, int new_index) {
