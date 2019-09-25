@@ -12,7 +12,7 @@ public abstract class Sort implements Callable {
 
     @Override
     public void init() {
-        unsortedList = new Generator().unsortedListGenerator(1000, 1000);
+        unsortedList = new Generator(23).unsortedListGenerator( 1000);
     }
 
     protected void swap(int index1, int index2) {
