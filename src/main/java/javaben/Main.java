@@ -15,7 +15,7 @@ public class Main {
 
         int size = (int) Math.pow(2, 12);
 
-        long n = (long) Math.pow(10, 9);
+        long n = (long) Math.pow(10, 5);
 
         List<Callable> list = new ArrayList<>();
         list.add(new Addition());
@@ -32,13 +32,13 @@ public class Main {
 
         list.clear();
         list.add(new CountingSort());
-        list.add(new FusionSort());
+//        list.add(new FusionSort());
         list.add(new HeapSort());
-        //list.add(new InsertionSort());
-        list.add(new NativeSort());
+        list.add(new InsertionSort());
+//        list.add(new NativeSort());
         list.add(new QuickSort());
         //list.add(new SelectionSort());
-        list.add(new SmoothSort());
+//        list.add(new SmoothSort());
 
         for (Callable item : list) {
             long total = 0;

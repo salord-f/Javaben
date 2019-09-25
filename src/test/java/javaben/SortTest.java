@@ -14,7 +14,7 @@ public class SortTest {
     private final Generator generator = new Generator(SEED);
 
     private void checkSortResult(List<Integer> result) {
-        // System.out.println(result);
+        System.out.println(result);
         for (int i = 1; i < SIZE; i++) {
             assertTrue(result.get(i) <= result.get(i - 1));
         }
@@ -58,5 +58,8 @@ public class SortTest {
     public void selectionSortTest() {
         checkSort(new SelectionSort());
     }
+
+    @Test
+    public void heapSortTest() { checkSort(new HeapSort());}
 
 }
