@@ -1,6 +1,7 @@
 package javaben;
 
 import javaben.sort.*;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.List;
@@ -22,6 +23,7 @@ public class SortTest {
 
     private void checkSort(Sort sort) {
         List<Integer> list = generator.unsortedListGenerator(SIZE);
+        sort.testing = true;
         sort.init(SIZE, SEED);
         checkSortResult(sort.sort(list));
     }
@@ -29,9 +31,9 @@ public class SortTest {
     @Test
     public void emptySortTest() {
         List<Integer> list = generator.unsortedListGenerator(SIZE);
-        Sort emptySort = new EmptySort();
-        emptySort.init(SIZE, SEED);
-        List<Integer> result = emptySort.sort(list);
+        Sort sort = new EmptySort();
+        sort.init(SIZE, SEED);
+        List<Integer> result = sort.sort(list);
         for (int i = 0; i < list.size(); i++) {
             assertEquals(list.get(i), result.get(i));
         }
@@ -39,9 +41,7 @@ public class SortTest {
 
     @Test
     public void countingSortTest() {
-        Sort sort = new CountingSort();
-        sort.testing = true;
-        checkSort(sort);
+        checkSort(new CountingSort());
     }
 
     @Test
@@ -61,5 +61,8 @@ public class SortTest {
 
     @Test
     public void heapSortTest() { checkSort(new HeapSort());}
+
+    @Test
+    public void nativeSort() { checkSort(new NativeSort()); }
 
 }
