@@ -2,7 +2,7 @@ package javaben;
 
 public interface Callable {
 
-    void init();
+    void init(int size, long seed);
 
     void compute(long n);
 

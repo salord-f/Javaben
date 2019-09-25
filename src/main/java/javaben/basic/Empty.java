@@ -1,13 +1,6 @@
 package javaben.basic;
 
-import javaben.Callable;
-
-public class Empty implements Callable {
-
-    @Override
-    public void init() {
-        // empty
-    }
+public class Empty extends Basic {
 
     @Override
     public void compute(long n) {

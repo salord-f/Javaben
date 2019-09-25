@@ -1,13 +1,6 @@
 package javaben.basic;
 
-import javaben.Callable;
-
-public class Addition implements Callable {
-
-    @Override
-    public void init() {
-        // empty
-    }
+public class Addition extends Basic {
 
     @Override
     public void compute(long n) {

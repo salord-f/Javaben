@@ -13,15 +13,17 @@ public class Main {
     public static void main(String[] args) {
 
         long n = (long) Math.pow(10, 4);
-        
+        int size = (int) Math.pow(2, 6);
+        long seed = System.currentTimeMillis();
+
         List<Callable> list = new ArrayList<>();
         list.add(new Addition());
         list.add(new Multiplication());
 
         for (Callable item : list) {
             long total = 0;
-            total = total + Benchmark.bench(item, n);
-            total = total - Benchmark.bench(new Empty(), n);
+            total = total + Benchmark.bench(item, n, size, seed);
+            total = total - Benchmark.bench(new Empty(), n, size, seed);
             System.out.format("%-20s%-30s%s%n", item.getClass().getSimpleName() + " :", "total (ns) : " + total, "per op (ns) : " + total / (double) n);
         }
 
@@ -37,8 +39,8 @@ public class Main {
 
         for (Callable item : list) {
             long total = 0;
-            total = total + Benchmark.bench(item, n);
-            total = total - Benchmark.bench(new EmptySort(), n);
+            total = total + Benchmark.bench(item, n, size, seed);
+            total = total - Benchmark.bench(new EmptySort(), n, size, seed);
             System.out.format("%-20s%-30s%s%n", item.getClass().getSimpleName() + " :", "total (ns) : " + total, "per op (ns) : " + total / (double) n);
 
         }
