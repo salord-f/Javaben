@@ -1,20 +1,46 @@
 package javaben;
 
-import javaben.basic.*;
+import javaben.basic.Addition;
+import javaben.basic.Empty;
+import javaben.basic.Multiplication;
 import javaben.sort.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) {
-        long total = 0;
 
-        long n = (long) Math.pow(10, 9);
-        for (int i = 0; i < 10; i++) {
-            total = total + Benchmark.bench(new InsertionSort(), n);
-            total = total - Benchmark.bench(new EmptySort(), n);
+        long n = (long) Math.pow(10, 4);
+        
+        List<Callable> list = new ArrayList<>();
+        list.add(new Addition());
+        list.add(new Multiplication());
+
+        for (Callable item : list) {
+            long total = 0;
+            total = total + Benchmark.bench(item, n);
+            total = total - Benchmark.bench(new Empty(), n);
+            System.out.format("%-20s%-30s%s%n", item.getClass().getSimpleName() + " :", "total (ns) : " + total, "per op (ns) : " + total / (double) n);
         }
 
-        System.out.println(total);
-        System.out.println(total / (double) n / 10);
+        list.clear();
+
+        list.add(new FusionSort());
+        list.add(new HeapSort());
+        list.add(new InsertionSort());
+        list.add(new NativeSort());
+        list.add(new QuickSort());
+        list.add(new SelectionSort());
+        list.add(new SmoothSort());
+
+        for (Callable item : list) {
+            long total = 0;
+            total = total + Benchmark.bench(item, n);
+            total = total - Benchmark.bench(new EmptySort(), n);
+            System.out.format("%-20s%-30s%s%n", item.getClass().getSimpleName() + " :", "total (ns) : " + total, "per op (ns) : " + total / (double) n);
+
+        }
     }
 }

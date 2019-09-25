@@ -1,4 +1,6 @@
-package javaben;
+package javaben.basic;
+
+import javaben.Callable;
 
 public class Empty implements Callable {
 
