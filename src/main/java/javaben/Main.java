@@ -11,10 +11,11 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
+        long seed = 516310114;
 
-        long n = (long) Math.pow(10, 4);
         int size = (int) Math.pow(2, 6);
-        long seed = System.currentTimeMillis();
+
+        long n = (long) Math.pow(10, 9);
 
         List<Callable> list = new ArrayList<>();
         list.add(new Addition());
@@ -26,6 +27,8 @@ public class Main {
             total = total - Benchmark.bench(new Empty(), n, size, seed);
             System.out.format("%-20s%-30s%s%n", item.getClass().getSimpleName() + " :", "total (ns) : " + total, "per op (ns) : " + total / (double) n);
         }
+
+        n = (long) Math.pow(10, 4);
 
         list.clear();
 
