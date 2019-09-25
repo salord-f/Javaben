@@ -12,6 +12,7 @@ public class QuickSort extends Sort {
         }
     }
 
+    // https://www.baeldung.com/java-quicksort
     public void quickSort(List<Integer> list, int begin, int end) {
         if (begin < end) {
             int partitionIndex = partition(list, begin, end);
