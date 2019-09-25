@@ -1,23 +1,23 @@
 package javaben.sort;
 
-import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class SelectionSort extends Sort {
+
     @Override
-    public void compute(long n) {
-        for (int i = 0; i < n; i++) {
-            copiedList = new ArrayList<>(unsortedList);
-            for (int j = 0; j < copiedList.size(); j++) {
-                int max = -1;
-                int max_index = -1;
-                for (int k = j; k < copiedList.size(); k++) {
-                    if (copiedList.get(k) > max) {
-                        max = copiedList.get(k);
-                        max_index = k;
-                    }
+    public List<Integer> sort(List<Integer> source) {
+        for (int j = 0; j < source.size(); j++) {
+            int max = -1;
+            int max_index = -1;
+            for (int k = j; k < source.size(); k++) {
+                if (source.get(k) > max) {
+                    max = source.get(k);
+                    max_index = k;
                 }
-                swap(j, max_index);
             }
+            Collections.swap(source, j, max_index);
         }
+        return source;
     }
 }

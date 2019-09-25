@@ -13,7 +13,7 @@ public class Main {
     public static void main(String[] args) {
         long seed = 516310114;
 
-        int size = (int) Math.pow(2, 6);
+        int size = (int) Math.pow(2, 12);
 
         long n = (long) Math.pow(10, 9);
 
@@ -31,13 +31,13 @@ public class Main {
         n = (long) Math.pow(10, 4);
 
         list.clear();
-
+        list.add(new CountingSort());
         list.add(new FusionSort());
         list.add(new HeapSort());
-        list.add(new InsertionSort());
+        //list.add(new InsertionSort());
         list.add(new NativeSort());
         list.add(new QuickSort());
-        list.add(new SelectionSort());
+        //list.add(new SelectionSort());
         list.add(new SmoothSort());
 
         for (Callable item : list) {

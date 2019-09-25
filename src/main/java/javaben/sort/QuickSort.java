@@ -1,15 +1,14 @@
 package javaben.sort;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class QuickSort extends Sort {
+
     @Override
-    public void compute(long n) {
-        for (int i = 0; i < n; i++) {
-            copiedList = new ArrayList<>(unsortedList);
-            quickSort(copiedList, 0, copiedList.size() - 1);
-        }
+    public List<Integer> sort(List<Integer> source) {
+        quickSort(source, 0, source.size() - 1);
+        return source;
     }
 
     // https://www.baeldung.com/java-quicksort
@@ -29,10 +28,10 @@ public class QuickSort extends Sort {
         for (int j = begin; j < end; j++) {
             if (list.get(j) > pivot) {
                 i++;
-                swap(i, j);
+                Collections.swap(list, i, j);
             }
         }
-        swap(i + 1, end);
+        Collections.swap(list, i + 1, end);
         return i + 1;
     }
 }
