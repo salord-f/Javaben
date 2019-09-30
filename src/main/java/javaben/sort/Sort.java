@@ -7,8 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Sort implements Callable {
-    protected List<Integer> unsortedList = new ArrayList<>();
-    protected List<Integer> copiedList;
+    private List<Integer> unsortedList = new ArrayList<>();
     public boolean testing = false;
 
     @Override
@@ -18,8 +17,8 @@ public abstract class Sort implements Callable {
 
     @Override
     public void compute(long n) {
-        for (int i = 0; i < n; i++) {
-            copiedList = new ArrayList<>(unsortedList);
+        for (long i = 0; i < n; i++) {
+            List<Integer> copiedList = new ArrayList<>(unsortedList);
             sort(copiedList);
         }
     }

@@ -15,7 +15,7 @@ public class Main {
 
         int size = (int) Math.pow(2, 12);
 
-        long n = (long) Math.pow(10, 5);
+        long n = (long) Math.pow(10, 10);
 
         List<Callable> list = new ArrayList<>();
         list.add(new Addition());
