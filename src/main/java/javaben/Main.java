@@ -16,13 +16,13 @@ public class Main {
 
 		long iterations = (long) Math.pow(10, 6);
 
-		int maxPow = 1;
+		int maxPow = 12;
 
-		for (int i = 0; i < maxPow; i++) {
-			int size = (int) Math.pow(2, i);
+		//for (int i = 0; i < maxPow; i++) {
+			int size = (int) Math.pow(2, maxPow);
 			System.out.println("size : " + size + " ");
 			launch(seed, size, iterations);
-		}
+		//}
 
 
 	}
@@ -39,7 +39,7 @@ public class Main {
 			System.out.format("%-20s%-30s%s%n", item.getClass().getSimpleName() + " :", "total (ns) : " + total, "per op (ns) : " + total / (double) iterations);
 		}
 
-		iterations = (long) Math.pow(10, 6);
+		iterations = (long) Math.pow(10, 4);
 
 		list.clear();
 		list.add(new CountingSort());
