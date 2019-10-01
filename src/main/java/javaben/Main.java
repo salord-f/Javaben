@@ -2,7 +2,7 @@ package javaben;
 
 import javaben.basic.Addition;
 import javaben.basic.Multiplication;
-import javaben.sort.CountingSort;
+import javaben.sort.*;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -26,13 +26,12 @@ public class Main {
 
 		for (File f : folder.listFiles()) {
 			if (f.getName().endsWith(".si5")) {
-				f.delete(); // may fail mysteriously - returns boolean you may want to check
+				f.delete();
 			}
 		}
 
 		long seconds = 10;
-
-
+		
 		int maxPow = 20;
 
 		List<Callable> list = new ArrayList<>();
@@ -42,7 +41,6 @@ public class Main {
 		// Warmup
 		for (Callable item : list) {
 			Result result = Benchmark.bench(item, seconds, 1, seed, Generator.Type.UNSORTED);
-			//iterations = iterations - Benchmark.bench(new Empty(), seconds, 1, seed, Generator.Type.UNSORTED);
 			System.out.format("%-20s%-40s%s%n", item.getClass().getSimpleName() + " :", "total (iterations) : " + result.iterations, "total (time) : " + result.time / result.iterations);
 		}
 
@@ -60,22 +58,21 @@ public class Main {
 
 		List<Callable> list = new ArrayList<>();
 		list.add(new CountingSort());
-		//list.add(new HeapSort());
-		//list.add(new InsertionSort());
-		//list.add(new QuickSort());
-		//list.add(new MergeSort());
-		//list.add(new NativeSort());
-		//list.add(new SelectionSort());
-		//list.add(new SmoothSort());
+		list.add(new HeapSort());
+		list.add(new InsertionSort());
+		list.add(new QuickSort());
+		list.add(new MergeSort());
+		list.add(new NativeSort());
+		list.add(new SelectionSort());
+		list.add(new SmoothSort());
 
 		for (Callable item : list) {
-			//for (Generator.Type type : Generator.Type.values()) {
-				Result result = Benchmark.bench(item, seconds, size, seed, Generator.Type.UNSORTED);
-				//total = total - Benchmark.bench(new EmptySort(), seconds, size, seed, type);
+			for (Generator.Type type : Generator.Type.values()) {
+				Result result = Benchmark.bench(item, seconds, size, seed, type);
 				long time = result.time / result.iterations;
 				System.out.format("%-20s%-40s%s%n", item.getClass().getSimpleName() + " :", "total (iterations) : " + result.iterations, "total (time) : " + time);
-				writeToFile(item.getClass().getSimpleName(), "UNSORTED", size, time);
-			//}
+				writeToFile(item.getClass().getSimpleName(), type.name(), size, time);
+			}
 		}
 	}
 
@@ -91,4 +88,4 @@ public class Main {
 		}
 	}
 
-	}
+}
