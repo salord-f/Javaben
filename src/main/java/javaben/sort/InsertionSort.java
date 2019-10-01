@@ -8,7 +8,7 @@ public class InsertionSort extends Sort {
     public List<Integer> sort(List<Integer> source) {
         for (int j = 1; j < source.size(); j++) {
             int k = j - 1;
-            while (k >= 0 && source.get(k) < source.get(j)) {
+            while (k >= 0 && source.get(k) > source.get(j)) {
                 k--;
             }
             if (j != (k + 1)) {
