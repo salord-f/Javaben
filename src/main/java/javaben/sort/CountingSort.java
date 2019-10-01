@@ -9,6 +9,7 @@ public class CountingSort extends Sort {
 
 	private final static int MAX = 65535;
 
+	// https://www.geeksforgeeks.org/counting-sort/
 	@Override
 	public List<Integer> sort(List<Integer> source) {
 		int[] array = new int[MAX + 1];

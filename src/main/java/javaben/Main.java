@@ -1,9 +1,8 @@
 package javaben;
 
 import javaben.basic.Addition;
-import javaben.basic.Empty;
 import javaben.basic.Multiplication;
-import javaben.sort.*;
+import javaben.sort.CountingSort;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -31,7 +30,7 @@ public class Main {
 			}
 		}
 
-		long iterations = (long) Math.pow(10, 10);
+		long seconds = 10;
 
 
 		int maxPow = 20;
@@ -42,13 +41,12 @@ public class Main {
 
 		// Warmup
 		for (Callable item : list) {
-			long total = 0;
-			total = total + Benchmark.bench(item, iterations, 1, seed, Generator.Type.UNSORTED);
-			total = total - Benchmark.bench(new Empty(), iterations, 1, seed, Generator.Type.UNSORTED);
-			System.out.format("%-20s%-30s%s%n", item.getClass().getSimpleName() + " :", "total (ns) : " + total, "per op (ns) : " + total / (double) iterations);
+			Result result = Benchmark.bench(item, seconds, 1, seed, Generator.Type.UNSORTED);
+			//iterations = iterations - Benchmark.bench(new Empty(), seconds, 1, seed, Generator.Type.UNSORTED);
+			System.out.format("%-20s%-40s%s%n", item.getClass().getSimpleName() + " :", "total (iterations) : " + result.iterations, "total (time) : " + result.time / result.iterations);
 		}
 
-		for (int i = 0; i < maxPow; i++) {
+		for (int i = 0; i <= maxPow; i++) {
 			int size = (int) Math.pow(2, i);
 			System.out.println("size : " + size + " ");
 			launch(seed, size);
@@ -58,26 +56,26 @@ public class Main {
 
 	private static void launch(long seed, int size) {
 
-		long iterations = (long) Math.pow(10, 4);
+		long seconds = 10; // 5 minutes
 
 		List<Callable> list = new ArrayList<>();
 		list.add(new CountingSort());
-		list.add(new HeapSort());
-		list.add(new InsertionSort());
-		list.add(new QuickSort());
-		list.add(new MergeSort());
-		list.add(new NativeSort());
-		list.add(new SelectionSort());
+		//list.add(new HeapSort());
+		//list.add(new InsertionSort());
+		//list.add(new QuickSort());
+		//list.add(new MergeSort());
+		//list.add(new NativeSort());
+		//list.add(new SelectionSort());
 		//list.add(new SmoothSort());
 
 		for (Callable item : list) {
-			for (Generator.Type type : Generator.Type.values()) {
-				long total = 0;
-				total = total + Benchmark.bench(item, iterations, size, seed, type);
-				total = total - Benchmark.bench(new EmptySort(), iterations, size, seed, type);
-				System.out.format("%-20s%-30s%s%n", item.getClass().getSimpleName() + " :", "total (ns) : " + total, "per op (ns) : " + total / (double) iterations);
-				writeToFile(item.getClass().getSimpleName(), type.name(), size, total / 1000000);
-			}
+			//for (Generator.Type type : Generator.Type.values()) {
+				Result result = Benchmark.bench(item, seconds, size, seed, Generator.Type.UNSORTED);
+				//total = total - Benchmark.bench(new EmptySort(), seconds, size, seed, type);
+				long time = result.time / result.iterations;
+				System.out.format("%-20s%-40s%s%n", item.getClass().getSimpleName() + " :", "total (iterations) : " + result.iterations, "total (time) : " + time);
+				writeToFile(item.getClass().getSimpleName(), "UNSORTED", size, time);
+			//}
 		}
 	}
 

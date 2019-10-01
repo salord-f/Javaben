@@ -2,6 +2,7 @@ package javaben.sort;
 
 import javaben.Callable;
 import javaben.Generator;
+import javaben.Result;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,11 +28,15 @@ public abstract class Sort implements Callable {
 	}
 
 	@Override
-	public void compute(long n) {
-		for (long i = 0; i < n; i++) {
+	public Result compute(long seconds) {
+		long current = System.nanoTime();
+		int iterations = 0;
+		while (System.nanoTime() - current < seconds * 1000000000) {
+			iterations++;
 			List<Integer> copiedList = new ArrayList<>(list);
 			sort(copiedList);
 		}
+		return new Result(System.nanoTime() - current, iterations);
 	}
 
 	public abstract List<Integer> sort(List<Integer> source);

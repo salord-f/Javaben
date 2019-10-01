@@ -1,16 +1,13 @@
 package javaben.basic;
 
-import javaben.Callable;
-import javaben.Generator;
+import javaben.sort.Sort;
 
-public class Basic implements Callable {
-    @Override
-    public void init(int size, long seed, Generator.Type type) {
-        // empty
-    }
+import java.util.List;
 
-    @Override
-    public void compute(long n) {
+public class Basic extends Sort {
 
-    }
+	@Override
+	public List<Integer> sort(List<Integer> source) {
+		return source;
+	}
 }
