@@ -46,6 +46,7 @@ public class MergeSort extends Sort {
 
 	@Override
 	public List<Integer> sort(List<Integer> source) {
+		// O(n) to convert but still negligible
 		int[] array = source.stream().mapToInt(i -> i).toArray();
 		mergeSort(array, source.size());
 		if (testing) {

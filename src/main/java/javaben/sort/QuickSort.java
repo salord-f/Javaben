@@ -26,7 +26,7 @@ public class QuickSort extends Sort {
         int i = (begin - 1);
 
         for (int j = begin; j < end; j++) {
-            if (list.get(j) > pivot) {
+            if (list.get(j) <= pivot) {
                 i++;
                 Collections.swap(list, i, j);
             }
