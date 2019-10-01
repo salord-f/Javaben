@@ -64,7 +64,6 @@ public class Main {
 		list.add(new MergeSort());
 		list.add(new NativeSort());
 		list.add(new SelectionSort());
-		list.add(new SmoothSort());
 
 		for (Callable item : list) {
 			for (Generator.Type type : Generator.Type.values()) {
