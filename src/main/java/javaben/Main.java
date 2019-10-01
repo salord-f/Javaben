@@ -91,9 +91,4 @@ public class Main {
 		}
 	}
 
-	private double factor(int size, long time) {
-		double sizeLog = Math.log(size);
-		double timeLog = Math.log(time);
-		return 0;
 	}
-}
