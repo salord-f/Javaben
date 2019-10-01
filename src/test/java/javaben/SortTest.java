@@ -16,14 +16,14 @@ public class SortTest {
 	private void checkSortResult(List<Integer> result) {
 		System.out.println(result);
 		for (int i = 1; i < SIZE; i++) {
-			assertTrue(result.get(i) <= result.get(i - 1));
+			assertTrue(result.get(i) >= result.get(i - 1));
 		}
 	}
 
 	private void checkSort(Sort sort) {
 		List<Integer> list = generator.unsortedListGenerator(SIZE);
 		sort.testing = true;
-		sort.init(SIZE, SEED);
+		sort.init(SIZE, SEED, Generator.Type.UNSORTED);
 		checkSortResult(sort.sort(list));
 	}
 
@@ -31,7 +31,7 @@ public class SortTest {
 	public void emptySortTest() {
 		List<Integer> list = generator.unsortedListGenerator(SIZE);
 		Sort sort = new EmptySort();
-		sort.init(SIZE, SEED);
+		sort.init(SIZE, SEED, Generator.Type.UNSORTED);
 		List<Integer> result = sort.sort(list);
 		for (int i = 0; i < list.size(); i++) {
 			assertEquals(list.get(i), result.get(i));

@@ -7,21 +7,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Sort implements Callable {
-    private List<Integer> unsortedList = new ArrayList<>();
-    public boolean testing = false;
+	public boolean testing = false;
 
-    @Override
-    public void init(int size, long seed) {
-        unsortedList = new Generator(seed).unsortedListGenerator(size);
-    }
+	private List<Integer> list = new ArrayList<>();
 
-    @Override
-    public void compute(long n) {
-        for (long i = 0; i < n; i++) {
-            List<Integer> copiedList = new ArrayList<>(unsortedList);
-            sort(copiedList);
-        }
-    }
+	@Override
+	public void init(int size, long seed, Generator.Type type) {
+		switch (type) {
+			case UNSORTED:
+				list = new Generator(seed).unsortedListGenerator(size);
+				break;
+			case SORTEDASC:
+				list = new Generator(seed).sortedListGenerator(size, true);
+				break;
+			case SORTEDDESC:
+				list = new Generator(seed).sortedListGenerator(size, false);
+				break;
+		}
+	}
 
-    public abstract List<Integer> sort(List<Integer> source);
+	@Override
+	public void compute(long n) {
+		for (long i = 0; i < n; i++) {
+			List<Integer> copiedList = new ArrayList<>(list);
+			sort(copiedList);
+		}
+	}
+
+	public abstract List<Integer> sort(List<Integer> source);
 }

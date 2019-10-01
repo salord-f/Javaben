@@ -19,13 +19,13 @@ public class GeneratorTest {
 
     @Test
     public void sortedListGeneratorTest() {
-        List<Integer> list = generator.sortedListGenerator(SIZE, "asc");
+        List<Integer> list = generator.sortedListGenerator(SIZE, true);
         assertEquals(SIZE, list.size());
         for (int i = 1; i < SIZE; i++) {
             assertTrue(list.get(i) > list.get(i - 1));
         }
 
-        list = generator.sortedListGenerator(SIZE, "desc");
+        list = generator.sortedListGenerator(SIZE, false);
         assertEquals(SIZE, list.size());
         for (int i = 1; i < SIZE; i++) {
             assertTrue(list.get(i) < list.get(i - 1));
