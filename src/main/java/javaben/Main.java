@@ -54,7 +54,7 @@ public class Main {
 
 	private static void launch(long seed, int size) {
 
-		long seconds = 10; // 5 minutes
+		long seconds = 10;
 
 		List<Callable> list = new ArrayList<>();
 		list.add(new CountingSort());

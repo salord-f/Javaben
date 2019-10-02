@@ -1,5 +1,6 @@
-package javaben;
+package javaben.sort;
 
+import javaben.Generator;
 import javaben.sort.*;
 import org.junit.Test;
 
@@ -14,7 +15,6 @@ public class SortTest {
 	private final Generator generator = new Generator(SEED);
 
 	private void checkSortResult(List<Integer> result) {
-		System.out.println(result);
 		for (int i = 1; i < SIZE; i++) {
 			assertTrue(result.get(i) >= result.get(i - 1));
 		}
