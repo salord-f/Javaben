@@ -27,8 +27,7 @@ public class MutableStackTest {
     public void mutableStackPopTest() {
         MutableStack stackA = new MutableStack();
         stackA.push(1);
-        int value = stackA.pop();
-        assertEquals(1, value);
+        assertEquals(1, stackA.pop());
     }
 
     @Test(expected = EmptyStackException.class)
