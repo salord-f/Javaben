@@ -42,7 +42,11 @@ public class ImmutableStack {
 	}
 
 	public ImmutableStack copy() {
-		return new ImmutableStack(head.copy());
+	    if (head == null) {
+	        return new ImmutableStack();
+        } else {
+            return new ImmutableStack(head.copy());
+        }
 	}
 
 }
