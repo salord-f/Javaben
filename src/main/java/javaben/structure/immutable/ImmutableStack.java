@@ -24,10 +24,9 @@ public class ImmutableStack {
 	public Tuple<ImmutableStack, Integer> pop() {
 		try {
 			return new Tuple<>(new ImmutableStack(head.getNodes()[0]), head.getValue());
-		} catch (EmptyStackException e) {
-			System.out.println("Empty stack");
+		} catch (NullPointerException e) {
+			throw new EmptyStackException();
 		}
-		return null;
 	}
 
 	public Integer peek() {

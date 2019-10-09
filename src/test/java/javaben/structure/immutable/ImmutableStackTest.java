@@ -32,4 +32,12 @@ public class ImmutableStackTest {
 		Tuple<ImmutableStack, Integer> tuple = stackB.pop();
 		assertEquals(1, (int) tuple.right);
 	}
+
+	@Test(expected = EmptyStackException.class)
+	public void immutableStackPopEmptyTest() {
+		ImmutableStack stackA = new ImmutableStack();
+		ImmutableStack stackB = stackA.push(1);
+		Tuple<ImmutableStack, Integer> tuple = stackB.pop();
+		tuple.left.pop();
+	}
 }
