@@ -10,7 +10,6 @@ import static org.junit.Assert.assertEquals;
 
 public class ImmutableStackTest {
 
-
 	@Test(expected = EmptyStackException.class)
 	public void immutableStackEmptyTest() {
 		ImmutableStack stack = new ImmutableStack();
