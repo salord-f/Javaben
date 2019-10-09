@@ -1,38 +1,45 @@
 package javaben.structure.immutable;
 
+import javaben.structure.Node;
 import javaben.structure.Tuple;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
-import java.util.Stack;
+import java.util.EmptyStackException;
 
+@AllArgsConstructor
+@NoArgsConstructor
+public class ImmutableStack {
 
-public class ImmutableStack extends Stack<Integer> {
+	private static final int ORDER = 1;
 
-	@Override
-	public synchronized Integer push(Integer item) {
-		throw new UnsupportedOperationException("Default push is not supported");
+	private Node head;
+
+	public ImmutableStack push(int value) {
+		Node node = new Node(value, ORDER);
+		node.getNodes()[0] = head;
+		return new ImmutableStack(node);
 	}
 
-	@Override
-	public synchronized Integer pop() {
-		throw new UnsupportedOperationException("Default pop is not supported");
-
+	public Tuple<ImmutableStack, Integer> pop() {
+		try {
+			return new Tuple<>(new ImmutableStack(head.getNodes()[0]), head.getValue());
+		} catch (EmptyStackException e) {
+			System.out.println("Empty stack");
+		}
+		return null;
 	}
 
-	public synchronized ImmutableStack immutablePush(Integer item) {
-		ImmutableStack stack = (ImmutableStack) this.clone();
-		stack.addElement(item);
-		return stack;
+	public Integer peek() {
+		try {
+			return head.getValue();
+		} catch (NullPointerException e) {
+			throw new EmptyStackException();
+		}
 	}
 
-	public synchronized Tuple<ImmutableStack, Integer> immutablePop() {
-		Integer obj;
-		int len = size();
-
-		obj = peek();
-		ImmutableStack stack = (ImmutableStack) this.clone();
-
-		stack.removeElementAt(len - 1);
-
-		return new Tuple<>(stack, obj);
+	public boolean isEmpty() {
+		return head == null;
 	}
+
 }
