@@ -41,4 +41,8 @@ public class ImmutableStack {
 		return head == null;
 	}
 
+	public ImmutableStack copy() {
+		return new ImmutableStack(head.copy());
+	}
+
 }

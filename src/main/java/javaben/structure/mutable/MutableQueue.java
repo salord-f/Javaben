@@ -2,38 +2,31 @@ package javaben.structure.mutable;
 
 import javaben.structure.EmptyQueueException;
 
-import java.util.EmptyStackException;
-
 public class MutableQueue {
-    private MutableStack s1 = new MutableStack();
-    private MutableStack s2 = new MutableStack();
+    private MutableStack stack_in = new MutableStack();
+    private MutableStack stack_out = new MutableStack();
 
     public void enQueue(int x)
     {
-        while (!s1.isEmpty())
-        {
-            s2.push(s1.pop());
-        }
-
-        s1.push(x);
-
-        while (!s2.isEmpty())
-        {
-            s1.push(s2.pop());
-        }
+        stack_in.push(x);
     }
 
     public int deQueue()
     {
-        try {
-            return s1.pop();
-        } catch (EmptyStackException e) {
+        if (isEmpty()) {
             throw new EmptyQueueException();
+        } else {
+            if (stack_out.isEmpty()) {
+                while (!stack_in.isEmpty()) {
+                    stack_out.push(stack_in.pop());
+                }
+            }
         }
+        return stack_out.pop();
+
     }
 
     public boolean isEmpty() {
-        return s1.isEmpty();
+        return stack_in.isEmpty() && stack_out.isEmpty();
     }
-
 }
