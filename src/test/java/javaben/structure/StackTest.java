@@ -37,7 +37,7 @@ public class StackTest {
 		ImmutableStack stackA = new ImmutableStack();
 		ImmutableStack stackB = stackA.immutablePush(1);
 		Tuple<ImmutableStack, Integer> tuple = stackB.immutablePop();
-		assertEquals(1, (int) tuple.y);
+		assertEquals(1, (int) tuple.right);
 	}
 
 	@Test(expected = UnsupportedOperationException.class)
