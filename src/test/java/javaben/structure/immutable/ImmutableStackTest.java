@@ -7,6 +7,7 @@ import java.util.EmptyStackException;
 
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 public class ImmutableStackTest {
 
@@ -21,6 +22,7 @@ public class ImmutableStackTest {
 	public void immutableStackPeekTest() {
 		ImmutableStack stackA = new ImmutableStack();
 		ImmutableStack stackB = stackA.push(1);
+		assertTrue(stackA.isEmpty());
 		assertEquals(1, (int) stackB.peek());
 	}
 
@@ -28,7 +30,9 @@ public class ImmutableStackTest {
 	public void immutableStackPopTest() {
 		ImmutableStack stackA = new ImmutableStack();
 		ImmutableStack stackB = stackA.push(1);
+		assertTrue(stackA.isEmpty());
 		Tuple<ImmutableStack, Integer> tuple = stackB.pop();
+		assertFalse(stackB.isEmpty());
 		assertEquals(1, (int) tuple.right);
 	}
 
@@ -36,7 +40,9 @@ public class ImmutableStackTest {
 	public void immutableStackPopEmptyTest() {
 		ImmutableStack stackA = new ImmutableStack();
 		ImmutableStack stackB = stackA.push(1);
+		assertTrue(stackA.isEmpty());
 		Tuple<ImmutableStack, Integer> tuple = stackB.pop();
+		assertFalse(stackB.isEmpty());
 		tuple.left.pop();
 	}
 }

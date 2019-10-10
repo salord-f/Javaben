@@ -15,13 +15,22 @@ public class ImmutableQueueTest {
     }
 
     @Test
+    public void immutableQueueEnQueueTest() {
+        ImmutableQueue queue = new ImmutableQueue();
+        queue.enQueue(1);
+        assertTrue(queue.isEmpty());
+    }
+
+    @Test
     public void immutableQueueDeQueueTest() {
         ImmutableQueue queue = new ImmutableQueue();
         queue = queue.enQueue(1);
         assertEquals(1, (int) queue.deQueue().right);
         queue = queue.enQueue(10);
         assertEquals(1, (int) queue.deQueue().right);
+        assertEquals(1, (int) queue.deQueue().right);
         ImmutableQueue queue1 = queue.deQueue().left;
+        assertEquals(10, (int) queue1.deQueue().right);
         assertEquals(10, (int) queue1.deQueue().right);
     }
 
@@ -29,6 +38,7 @@ public class ImmutableQueueTest {
     public void immutableQueueDeQueueEmptyTest() {
         ImmutableQueue queue = new ImmutableQueue();
         queue = queue.enQueue(1);
+        assertEquals(1, (int) queue.deQueue().right);
         assertEquals(1, (int) queue.deQueue().right);
         queue = queue.deQueue().left;
         queue.deQueue();
