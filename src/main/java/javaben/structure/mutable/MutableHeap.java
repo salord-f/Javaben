@@ -6,6 +6,7 @@ import javaben.structure.Node;
 import java.util.Stack;
 
 public class MutableHeap extends MutableBinaryTree {
+    @Override
     public void add(int value) {
         if (size == 0) {
             root = new Node(value, 2);
@@ -27,6 +28,7 @@ public class MutableHeap extends MutableBinaryTree {
                 Node parent = parents.pop();
                 if (node.getValue() < parent.getValue()) {
                     swapWithParent(node, parent);
+                    node = parent;
                 } else {
                     break;
                 }

@@ -11,14 +11,9 @@ public class MutableHeapTest {
     @Before
     public void init() {
         heap = new MutableHeap();
-        heap.add(5);
-        heap.add(8);
-        heap.add(1);
-        heap.add(3);
-        heap.add(7);
-        heap.add(6);
-        heap.add(2);
-        heap.add(4);
+        for (int i = 1; i < 10; i++) {
+            heap.add(10-i);
+        }
     }
 
     @Test
