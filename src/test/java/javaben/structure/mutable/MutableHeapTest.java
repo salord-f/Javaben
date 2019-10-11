@@ -9,11 +9,12 @@ import static org.junit.Assert.assertTrue;
 
 public class MutableHeapTest {
 	private MutableHeap heap;
+	private int size = 30;
 
 	@Before
 	public void init() {
 		heap = new MutableHeap();
-		for (int i = 30; i > 0; i--) {
+		for (int i = size; i > 0; i--) {
 			heap.add(i);
 		}
 	}
@@ -23,8 +24,15 @@ public class MutableHeapTest {
 		assertEquals(1, heap.peek());
 	}
 
+    @Test
+    public void popTest() {
+        for (int i = 1; i < size; i++) {
+            assertEquals(i, heap.pop());
+        }
+    }
+
 	@Test
-	public void popTest() {
+	public void checkTest() {
 		checkNode(heap.getRoot());
 	}
 
