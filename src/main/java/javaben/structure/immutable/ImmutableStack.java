@@ -7,8 +7,8 @@ import lombok.NoArgsConstructor;
 
 import java.util.EmptyStackException;
 
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class ImmutableStack {
 
 	private static final int ORDER = 1;

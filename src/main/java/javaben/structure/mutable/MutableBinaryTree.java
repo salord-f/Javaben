@@ -1,10 +1,12 @@
 package javaben.structure.mutable;
 
 import javaben.structure.Node;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
 public class MutableBinaryTree {
 
     protected Node root;

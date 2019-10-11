@@ -6,6 +6,14 @@ import javaben.structure.Node;
 import java.util.Stack;
 
 public class MutableHeap extends MutableBinaryTree {
+
+    public MutableHeap(){}
+
+    public MutableHeap(Node root, int size) {
+        super.root = root;
+        super.size = size;
+    }
+
     @Override
     public void add(int value) {
         if (size == 0) {

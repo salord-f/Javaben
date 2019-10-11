@@ -14,9 +14,9 @@ public class Node {
         nodes = new Node[order];
     }
 
-    public Node copy() {
-        Node copy = new Node(value, order);
-        if (order >= 0) System.arraycopy(nodes, 0, copy.nodes, 0, order);
-        return copy;
-    }
+	public Node copy() {
+		Node copy = new Node(value, order);
+		if (order >= 0) System.arraycopy(nodes, 0, copy.nodes, 0, order);
+		return copy;
+	}
 }
