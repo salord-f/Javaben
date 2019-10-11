@@ -1,6 +1,6 @@
 package javaben.structure.mutable;
 
-public class MutableHeap extends BinaryTree {
+public class MutableHeap extends MutableBinaryTree {
     public void add(int e) {
         elements.add(e);
         int elementIndex = elements.size() - 1;
@@ -18,9 +18,9 @@ public class MutableHeap extends BinaryTree {
 
         int result = elementAt(0);
 
-        int lasElementIndex = elements.size() - 1;
-        swap(0, lasElementIndex);
-        elements.remove(lasElementIndex);
+        int lastElementIndex = elements.size() - 1;
+        swap(0, lastElementIndex);
+        elements.remove(lastElementIndex);
 
         int elementIndex = 0;
         while (!isLeaf(elementIndex) && !isCorrectParent(elementIndex)) {

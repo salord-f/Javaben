@@ -3,7 +3,7 @@ package javaben.structure.mutable;
 import java.util.ArrayList;
 import java.util.List;
 
-class BinaryTree {
+class MutableBinaryTree {
 
     List<Integer> elements = new ArrayList<>();
 
