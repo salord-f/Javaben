@@ -18,16 +18,18 @@ public class MutableHeapTest {
         heap.add(7);
         heap.add(6);
         heap.add(2);
+        heap.add(4);
+    }
+
+    @Test
+    public void peekTest() {
+        assertEquals(1, heap.peek());
     }
 
     @Test
     public void popTest() {
-        assertEquals(1, heap.pop());
-        assertEquals(2, heap.pop());
-        assertEquals(3, heap.pop());
-        assertEquals(5, heap.pop());
-        assertEquals(6, heap.pop());
-        assertEquals(7, heap.pop());
-        assertEquals(8, heap.pop());
+        for (int i = 1; i < 9; i++) {
+            assertEquals(i, heap.pop());
+        }
     }
 }
