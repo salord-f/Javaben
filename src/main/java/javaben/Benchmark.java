@@ -223,8 +223,10 @@ public class Benchmark {
 				break;
 			case "NativeArray":
 				runNativeArray((NativeArray) callable, method, source);
+				break;
 			case "NativeStack":
 				runNativeStack((NativeStack) callable, method, source);
+				break;
 			default:
 				throw new UnsupportedOperationException();
 		}
