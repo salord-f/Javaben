@@ -2,6 +2,7 @@ package javaben.structure.immutable;
 
 import javaben.structure.Node;
 
+import java.util.List;
 import java.util.Stack;
 
 public class ImmutableArray extends ImmutableBinaryTree {
@@ -43,5 +44,47 @@ public class ImmutableArray extends ImmutableBinaryTree {
 
     public Integer get(int index) {
         return elementAt(index);
+    }
+
+    @Override
+    public void method(String method, List<Integer> source) {
+        switch (method) {
+            case "set-random":
+                for (int i = 0; i < source.size(); i++) {
+                    this.root = this.set(source.get(i), i).root;
+                }
+                break;
+            case "set-sequential":
+                for (int i = 0; i < source.size(); i++) {
+                    this.root = this.set(i, source.get(i)).root;
+                }
+                break;
+            case "get-random":
+                for (int i = 0; i < source.size(); i++) {
+                    this.get(source.get(i));
+                }
+                break;
+            case "get-sequential":
+                for (int i = 0; i < source.size(); i++) {
+                    this.get(i);
+                }
+                break;
+        }
+    }
+
+    @Override
+    public void setup(String method, List<Integer> source) {
+        switch (method) {
+            case "get-random":
+                for (int i = 0; i < source.size(); i++) {
+                    this.root = this.set(source.get(i), i).root;
+                }
+                break;
+            case "get-sequential":
+                for (int i = 0; i < source.size(); i++) {
+                    this.root = this.set(i, source.get(i)).root;
+                }
+                break;
+        }
     }
 }

@@ -1,8 +1,11 @@
 package javaben.structure.mutable;
 
-import javaben.structure.EmptyQueueException;
+import javaben.structure.Structure;
+import javaben.structure.exception.EmptyQueueException;
 
-public class MutableQueue {
+import java.util.List;
+
+public class MutableQueue extends Structure {
     private MutableStack stack_in = new MutableStack();
     private MutableStack stack_out = new MutableStack();
 
@@ -28,5 +31,15 @@ public class MutableQueue {
 
     public boolean isEmpty() {
         return stack_in.isEmpty() && stack_out.isEmpty();
+    }
+
+    @Override
+    public void setup(String method, List<Integer> source) {
+
+    }
+
+    @Override
+    public void method(String method, List<Integer> source) {
+
     }
 }

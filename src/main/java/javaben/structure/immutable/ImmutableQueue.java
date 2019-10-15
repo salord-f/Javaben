@@ -1,13 +1,16 @@
 package javaben.structure.immutable;
 
-import javaben.structure.EmptyQueueException;
+import javaben.structure.Structure;
+import javaben.structure.exception.EmptyQueueException;
 import javaben.structure.Tuple;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
-public class ImmutableQueue {
+public class ImmutableQueue extends Structure {
     private ImmutableStack stack_in = new ImmutableStack();
     private ImmutableStack stack_out = new ImmutableStack();
 
@@ -36,5 +39,30 @@ public class ImmutableQueue {
 
     public boolean isEmpty() {
         return stack_in.isEmpty() && stack_out.isEmpty();
+    }
+
+    @Override
+    public void setup(String method, List<Integer> source) {
+        if ("dequeue".equals(method)) {
+            for (Integer integer : source) {
+                this.enQueue(integer);
+            }
+        }
+    }
+
+    @Override
+    public void method(String method, List<Integer> source) {
+        switch (method) {
+            case "enqueue":
+                for (Integer integer : source) {
+                    this.enQueue(integer);
+                }
+                break;
+            case "dequeue":
+                for (int i = 0; i < source.size(); i++) {
+                    this.deQueue();
+                }
+                break;
+        }
     }
 }

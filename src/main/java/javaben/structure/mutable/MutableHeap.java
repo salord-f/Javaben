@@ -1,8 +1,9 @@
 package javaben.structure.mutable;
 
-import javaben.structure.EmptyHeapException;
+import javaben.structure.exception.EmptyHeapException;
 import javaben.structure.Node;
 
+import java.util.List;
 import java.util.Stack;
 
 public class MutableHeap extends MutableBinaryTree {
@@ -79,5 +80,15 @@ public class MutableHeap extends MutableBinaryTree {
         }
 
         return result;
+    }
+
+    @Override
+    public void method(String method, List<Integer> source) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setup(String method, List<Integer> source) {
+        throw new UnsupportedOperationException();
     }
 }

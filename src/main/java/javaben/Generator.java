@@ -1,8 +1,6 @@
 package javaben;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class Generator {
 	private final static int MAX = 65535;
@@ -15,9 +13,17 @@ public class Generator {
 	public List<Integer> unsortedListGenerator(int length) {
 		List<Integer> randomList = new ArrayList<>();
 		for (int i = 0; i < length; i++) {
-			randomList.add(random.nextInt(MAX));
+			randomList.add(random.nextInt(length)); // /!\ set to MAX for Counting Sort
 		}
 		return randomList;
+	}
+
+	public List<Integer> unsortedSetGenerator(int length) {
+		Set<Integer> randomList = new HashSet<>();
+		for (int i = 0; i < length; i++) {
+			randomList.add(random.nextInt(length)); // /!\ set to MAX for Counting Sort
+		}
+		return new ArrayList<>(randomList);
 	}
 
 	public List<Integer> sortedListGenerator(int length, boolean ascending) {
@@ -35,6 +41,6 @@ public class Generator {
 	}
 
 	public enum Type {
-		UNSORTED, SORTEDASC, SORTEDDESC
+		UNSORTED, UNSORTEDSET, SORTEDASC, SORTEDDESC
 	}
 }

@@ -1,9 +1,13 @@
 package javaben;
 
+import java.util.List;
+
 public interface Callable {
 
-    void init(int size, long seed, Generator.Type type);
+    List<Integer> init(int size, long seed, Generator.Type type);
 
-    Result compute(long seconds);
+    void setup(String method, List<Integer> source);
+
+    Result compute(String method, long seconds);
 
 }

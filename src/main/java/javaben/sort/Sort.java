@@ -12,8 +12,12 @@ public abstract class Sort implements Callable {
 
 	private List<Integer> list = new ArrayList<>();
 
+	public void setup(String method, List<Integer> source) {
+		// unused
+	}
+
 	@Override
-	public void init(int size, long seed, Generator.Type type) {
+	public List<Integer> init(int size, long seed, Generator.Type type) {
 		switch (type) {
 			case UNSORTED:
 				list = new Generator(seed).unsortedListGenerator(size);
@@ -25,10 +29,11 @@ public abstract class Sort implements Callable {
 				list = new Generator(seed).sortedListGenerator(size, false);
 				break;
 		}
+		return list;
 	}
 
 	@Override
-	public Result compute(long seconds) {
+	public Result compute(String method, long seconds) {
 		long current = System.nanoTime();
 		int iterations = 0;
 		while (System.nanoTime() - current < seconds * 1000000000) {

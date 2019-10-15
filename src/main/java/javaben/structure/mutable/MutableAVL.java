@@ -1,8 +1,11 @@
 package javaben.structure.mutable;
 
 import javaben.structure.AVLNode;
+import javaben.structure.Structure;
 
-public class MutableAVL {
+import java.util.List;
+
+public class MutableAVL extends Structure {
 
     private AVLNode root;
 
@@ -255,5 +258,15 @@ public class MutableAVL {
 
     public AVLNode getRoot() {
         return root;
+    }
+
+    @Override
+    public void setup(String method, List<Integer> source) {
+
+    }
+
+    @Override
+    public void method(String method, List<Integer> source) {
+
     }
 }

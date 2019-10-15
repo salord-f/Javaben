@@ -1,6 +1,6 @@
 package javaben.structure.mutable;
 
-import javaben.structure.EmptyQueueException;
+import javaben.structure.exception.EmptyQueueException;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertTrue;

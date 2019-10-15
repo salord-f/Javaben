@@ -1,4 +1,4 @@
-package javaben.structure;
+package javaben.structure.exception;
 
 import java.util.EmptyStackException;
 

@@ -1,15 +1,17 @@
 package javaben.structure.immutable;
 
 import javaben.structure.Node;
+import javaben.structure.Structure;
 import javaben.structure.Tuple;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import java.util.EmptyStackException;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
-public class ImmutableStack {
+public class ImmutableStack extends Structure {
 
 	private static final int ORDER = 1;
 
@@ -49,4 +51,28 @@ public class ImmutableStack {
         }
 	}
 
+	@Override
+	public void setup(String method, List<Integer> source) {
+		if ("pop".equals(method)) {
+			for (Integer integer : source) {
+				this.push(integer);
+			}
+		}
+	}
+
+	@Override
+	public void method(String method, List<Integer> source) {
+		switch (method) {
+			case "push":
+				for (Integer integer : source) {
+					this.push(integer);
+				}
+				break;
+			case "pop":
+				for (int i = 0; i < source.size(); i++) {
+					this.pop();
+				}
+				break;
+		}
+	}
 }

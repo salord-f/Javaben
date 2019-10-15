@@ -1,13 +1,15 @@
 package javaben.structure.immutable;
 
-import javaben.structure.EmptyBinaryTreeException;
+import javaben.structure.Structure;
+import javaben.structure.common.Array;
+import javaben.structure.exception.EmptyBinaryTreeException;
 import javaben.structure.Node;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-public class ImmutableBinaryTree {
+public class ImmutableBinaryTree extends Structure{
 
     protected Node root;
     protected int size;
@@ -145,5 +147,15 @@ public class ImmutableBinaryTree {
         int tmp = child.getValue();
         child.setValue(parent.getValue());
         parent.setValue(tmp);
+    }
+
+    @Override
+    public void setup(String method, List<Integer> source) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void method(String method, List<Integer> source) {
+        throw new UnsupportedOperationException();
     }
 }

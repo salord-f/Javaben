@@ -1,6 +1,7 @@
 package javaben.structure.mutable;
 
-import javaben.structure.EmptyBinaryTreeException;
+import javaben.structure.Structure;
+import javaben.structure.exception.EmptyBinaryTreeException;
 import javaben.structure.Node;
 import lombok.Getter;
 
@@ -8,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Getter
-public class MutableBinaryTree {
+public class MutableBinaryTree extends Structure {
 
     protected Node root;
     protected int size = 0;
@@ -112,5 +113,15 @@ public class MutableBinaryTree {
         int tmp = child.getValue();
         child.setValue(parent.getValue());
         parent.setValue(tmp);
+    }
+
+    @Override
+    public void setup(String method, List<Integer> source) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void method(String method, List<Integer> source) {
+        throw new UnsupportedOperationException();
     }
 }

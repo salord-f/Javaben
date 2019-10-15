@@ -1,9 +1,10 @@
 package javaben.structure.immutable;
 
-import javaben.structure.EmptyHeapException;
 import javaben.structure.Node;
 import javaben.structure.Tuple;
+import javaben.structure.exception.EmptyHeapException;
 
+import java.util.List;
 import java.util.Stack;
 
 public class ImmutableHeap extends ImmutableBinaryTree {
@@ -117,6 +118,33 @@ public class ImmutableHeap extends ImmutableBinaryTree {
 		}
 
 
+	}
 
+	@Override
+	public void method(String method, List<Integer> source) {
+		switch (method) {
+			case "add":
+				for (Integer integer : source) {
+					this.root = this.add(integer).root;
+					this.size++;
+				}
+				break;
+			case "pop":
+				for (int i = 0; i < source.size(); i++) {
+					this.root = this.pop().left.root;
+					this.size--;
+				}
+				break;
+		}
+	}
+
+	@Override
+	public void setup(String method, List<Integer> source) {
+		if ("pop".equals(method)) {
+			for (Integer integer : source) {
+				this.root = this.add(integer).root;
+				this.size++;
+			}
+		}
 	}
 }
