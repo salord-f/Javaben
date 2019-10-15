@@ -22,7 +22,7 @@ public class ImmutableBinaryTree {
         this.size = size;
     }
 
-    public ImmutableBinaryTree add(int value) {
+    public ImmutableBinaryTree add(Integer value) {
         if (size == 0) {
             return new ImmutableBinaryTree(new Node(value, 2), 1);
         } else {
@@ -84,7 +84,7 @@ public class ImmutableBinaryTree {
         }
     }
 
-    public int elementAt(int index) {
+    public Integer elementAt(int index) {
         String path = Integer.toBinaryString(index + 1).substring(1);
         Node curr = root;
         for (int i = 0; i < path.length(); i++) {

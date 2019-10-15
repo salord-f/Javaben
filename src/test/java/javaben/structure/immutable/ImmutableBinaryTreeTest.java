@@ -41,7 +41,7 @@ public class ImmutableBinaryTreeTest {
     @Test
     public void getTest() {
         for (int i = 0; i < 10; i++) {
-            assertEquals(i, immutableBinaryTree.elementAt(i));
+            assertEquals(i, (int) immutableBinaryTree.elementAt(i));
         }
     }
 
