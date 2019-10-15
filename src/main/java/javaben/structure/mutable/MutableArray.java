@@ -2,12 +2,11 @@ package javaben.structure.mutable;
 
 import javaben.structure.Node;
 import javaben.structure.Structure;
-import javaben.structure.common.Array;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MutableArray extends Array {
+public class MutableArray extends Structure {
 	private List<Node> nodes;
 
 	public MutableArray(int size) {

@@ -3,8 +3,6 @@ package javaben.structure.immutable;
 import javaben.structure.AVLNode;
 import javaben.structure.Structure;
 
-import java.util.List;
-
 public class ImmutableAVL extends Structure {
 
 	private AVLNode root;
@@ -31,7 +29,6 @@ public class ImmutableAVL extends Structure {
 		y = new AVLNode(y);
 		AVLNode x = new AVLNode((AVLNode) y.getNodes()[0]);
 		AVLNode T2 = (AVLNode) x.getNodes()[1];
-		;
 
 		// Perform rotation
 		x.getNodes()[1] = y;
@@ -172,10 +169,9 @@ public class ImmutableAVL extends Structure {
 					temp = (AVLNode) node.getNodes()[0];
 
 				// No child case
-				if (temp == null) {
-					node = null;
-				} else // One child case
-					node = temp; // Copy the contents of
+				// One child case
+				// Copy the contents of
+				node = temp;
 				// the non-empty child
 			} else {
 
@@ -267,36 +263,4 @@ public class ImmutableAVL extends Structure {
 		return root;
 	}
 
-	@Override
-	public void setup(String method, List<Integer> source) {
-		switch (method) {
-			case "delete":
-			case "search":
-				for (Integer integer : source) {
-					this.root = this.insert(integer).root;
-				}
-				break;
-		}
-	}
-
-	@Override
-	public void method(String method, List<Integer> source) {
-		switch (method) {
-			case "insert":
-				for (Integer integer : source) {
-					this.root = this.insert(integer).root;
-				}
-				break;
-			case "delete":
-				for (Integer integer : source) {
-					this.root = this.delete(integer).root;
-				}
-				break;
-			case "search":
-				for (Integer integer : source) {
-					this.search(integer);
-				}
-				break;
-		}
-	}
 }

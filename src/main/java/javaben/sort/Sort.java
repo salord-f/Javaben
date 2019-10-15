@@ -12,10 +12,6 @@ public abstract class Sort implements Callable {
 
 	private List<Integer> list = new ArrayList<>();
 
-	public void setup(String method, List<Integer> source) {
-		// unused
-	}
-
 	@Override
 	public List<Integer> init(int size, long seed, Generator.Type type) {
 		switch (type) {

@@ -1,11 +1,11 @@
 package javaben.structure.mutable;
 
 import javaben.structure.Node;
-import javaben.structure.common.CommonStack;
+import javaben.structure.Structure;
 
 import java.util.EmptyStackException;
 
-public class MutableStack extends CommonStack {
+public class MutableStack extends Structure {
 	private static final int ORDER = 1;
 	private Node head;
 

@@ -7,7 +7,6 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import java.util.EmptyStackException;
-import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -44,35 +43,11 @@ public class ImmutableStack extends Structure {
 	}
 
 	public ImmutableStack copy() {
-	    if (head == null) {
-	        return new ImmutableStack();
-        } else {
-            return new ImmutableStack(new Node(head));
-        }
-	}
-
-	@Override
-	public void setup(String method, List<Integer> source) {
-		if ("pop".equals(method)) {
-			for (Integer integer : source) {
-				this.push(integer);
-			}
+		if (head == null) {
+			return new ImmutableStack();
+		} else {
+			return new ImmutableStack(new Node(head));
 		}
 	}
 
-	@Override
-	public void method(String method, List<Integer> source) {
-		switch (method) {
-			case "push":
-				for (Integer integer : source) {
-					this.push(integer);
-				}
-				break;
-			case "pop":
-				for (int i = 0; i < source.size(); i++) {
-					this.pop();
-				}
-				break;
-		}
-	}
 }

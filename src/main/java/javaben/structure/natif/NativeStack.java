@@ -1,10 +1,10 @@
 package javaben.structure.natif;
 
-import javaben.structure.common.CommonStack;
+import javaben.structure.Structure;
 
 import java.util.Stack;
 
-public class NativeStack extends CommonStack {
+public class NativeStack extends Structure {
 	private Stack<Integer> stack = new Stack<>();
 
 	public void push(int value) {
