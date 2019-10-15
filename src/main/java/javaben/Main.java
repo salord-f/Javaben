@@ -5,6 +5,8 @@ import javaben.basic.Multiplication;
 import javaben.sort.*;
 import javaben.structure.immutable.*;
 import javaben.structure.mutable.*;
+import javaben.structure.natif.NativeArray;
+import javaben.structure.natif.NativeStack;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -117,6 +119,13 @@ public class Main {
 				case "ImmutableStack":
 					callable = new ImmutableStack();
 					break;
+				case "NativeArray":
+					callable = new NativeArray(size);
+					break;
+				case "NativeStack":
+					callable = new NativeStack();
+					break;
+
 				default:
 					throw new UnsupportedOperationException();
 			}
