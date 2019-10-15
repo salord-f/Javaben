@@ -42,6 +42,25 @@ public class ImmutableHeapTest {
 	}
 
 	@Test
+	public void immutabilityTest() {
+		ImmutableMinHeap heapA = new ImmutableMinHeap();
+		ImmutableMinHeap heapB = heapA.push(10);
+		ImmutableMinHeap heapC = heapB.push(5);
+		ImmutableMinHeap heapD = heapC.push(6);
+		ImmutableMinHeap heapE = heapD.push(2);
+		ImmutableMinHeap heapF = heapE.push(7);
+		assertNull(heapA.getRoot());
+		assertNotNull(heapB.getRoot());
+
+		assertEquals(10, (int) heapB.pop().right);
+		assertEquals(5, (int) heapC.pop().right);
+		assertEquals(5, (int) heapD.pop().right);
+		assertEquals(2, (int) heapE.pop().right);
+		assertEquals(2, (int) heapF.pop().right);
+
+	}
+
+	@Test
 	public void popTest() {
 		ImmutableHeap heap = new ImmutableHeap();
 
