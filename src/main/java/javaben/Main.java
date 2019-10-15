@@ -39,7 +39,7 @@ public class Main {
 		}
 
 		for (File f : folder.listFiles()) {
-			if ((args[0] + "_" + args[1] + "_" + args[2] + ".si5").equals(f.getName())) {
+			if ((args[0] + "_" + args[1] + "_" + args[2] + ".si5").toLowerCase().equals(f.getName())) {
 				f.delete();
 			}
 		}
