@@ -17,15 +17,17 @@ public class Benchmark {
 	public static Result benchStructure(Callable callable, String method, long seconds, int size, long seed, Generator.Type type) {
 
 		List<Integer> list = callable.init(size, seed, type);
-		callable = setupStructure(callable, method, list);
 
-		long current = System.nanoTime();
+		long start, time = 0;
 		int iterations = 0;
-		while (System.nanoTime() - current < seconds * 1000000000) {
+		while (time < seconds * 1000000000) {
 			iterations++;
+			callable = setupStructure(callable, method, list);
+			start = System.nanoTime();
 			runMethod(callable, method, list);
+			time += System.nanoTime() - start;
 		}
-		return new Result(System.nanoTime() - current, iterations);
+		return new Result(time, iterations);
 	}
 
 	private static Callable setupStructure(Callable callable, String method, List<Integer> source) {
@@ -410,12 +412,12 @@ public class Benchmark {
 
 	private static void runMutableStack(MutableStack callable, String method, List<Integer> source) {
 		switch (method) {
-			case "enqueue":
+			case "push":
 				for (Integer item : source) {
 					callable.push(item);
 				}
 				break;
-			case "dequeue":
+			case "pop":
 				for (Integer value : source) {
 					callable.pop();
 				}
@@ -440,12 +442,12 @@ public class Benchmark {
 
 	private static void runNativeStack(NativeStack callable, String method, List<Integer> source) {
 		switch (method) {
-			case "enqueue":
+			case "push":
 				for (Integer item : source) {
 					callable.push(item);
 				}
 				break;
-			case "dequeue":
+			case "pop":
 				for (Integer value : source) {
 					callable.pop();
 				}
