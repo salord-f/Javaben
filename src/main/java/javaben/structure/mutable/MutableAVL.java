@@ -163,9 +163,9 @@ public class MutableAVL extends Structure {
 					temp = (AVLNode) node.getNodes()[0];
 
 				// No child case
-                // One child case
-                // Copy the contents of
-                node = temp;
+				// One child case
+				// Copy the contents of
+				node = temp;
 				// the non-empty child
 			} else {
 

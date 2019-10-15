@@ -37,7 +37,7 @@ public class Main {
 		}
 
 		for (File f : folder.listFiles()) {
-			if (f.getName().endsWith(".si5")) {
+			if ((args[0] + "_" + args[1] + "_" + args[2] + ".si5").equals(f.getName())) {
 				f.delete();
 			}
 		}
