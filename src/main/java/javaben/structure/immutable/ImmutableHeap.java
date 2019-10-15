@@ -30,7 +30,7 @@ public class ImmutableHeap extends ImmutableBinaryTree {
 			}
 			int i = 1;
 			parents.add(curr);
-			Node copy = parents.pop().copy();
+			Node copy = new Node(parents.pop());
 			copy.getNodes()[path.charAt(path.length() - i) - 48] = node;
 
 			boolean climbing = false;
@@ -43,7 +43,7 @@ public class ImmutableHeap extends ImmutableBinaryTree {
 			while (!parents.isEmpty()) {
 				i++;
 				Node prevCopy = copy;
-				copy = parents.pop().copy();
+				copy = new Node(parents.pop());
 				copy.getNodes()[path.charAt(path.length() - i) - 48] = prevCopy;
 				if (climbing) {
 					if (prevCopy.getValue() < copy.getValue()) {
@@ -77,14 +77,14 @@ public class ImmutableHeap extends ImmutableBinaryTree {
 			}
 			int i = 1;
 			parents.add(curr);
-			Node copy = parents.pop().copy();
+			Node copy = new Node(parents.pop());
 			int lastValue = copy.getNodes()[path.charAt(path.length() - i) - 48].getValue();
 			copy.getNodes()[path.charAt(path.length() - i) - 48] = null;
 
 			while (!parents.isEmpty()) {
 				i++;
 				Node prevCopy = copy;
-				copy = parents.pop().copy();
+				copy = new Node(parents.pop());
 				copy.getNodes()[path.charAt(path.length() - i) - 48] = prevCopy;
 			}
 
@@ -104,7 +104,7 @@ public class ImmutableHeap extends ImmutableBinaryTree {
 					// empty
 				}
 				if (min < curr.getValue()) {
-					minNode = minNode.copy();
+					minNode = new Node(minNode);
 					curr.getNodes()[argMin] = minNode;
 					swapWithParent(minNode, curr);
 					curr = minNode;

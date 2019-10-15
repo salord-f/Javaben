@@ -28,13 +28,13 @@ public class ImmutableArray extends ImmutableBinaryTree {
 
         int i = 0;
         parents.add(curr);
-        Node copy = parents.pop().copy();
+        Node copy = new Node(parents.pop());
         copy.setValue(value);
 
         while (!parents.isEmpty()) {
             i++;
             Node prevCopy = copy;
-            copy = parents.pop().copy();
+            copy = new Node(parents.pop());
             copy.getNodes()[path.charAt(path.length() - i) - 48] = prevCopy;
         }
 

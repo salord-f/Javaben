@@ -36,13 +36,13 @@ public class ImmutableBinaryTree {
             }
             int i = 1;
             parents.add(curr);
-            Node copy = parents.pop().copy();
+            Node copy = new Node(parents.pop());
             copy.getNodes()[path.charAt(path.length() - i) - 48] = node;
 
             while (!parents.isEmpty()) {
                 i++;
                 Node prevCopy = copy;
-                copy = parents.pop().copy();
+                copy = new Node(parents.pop());
                 copy.getNodes()[path.charAt(path.length() - i) - 48] = prevCopy;
             }
 
@@ -69,13 +69,13 @@ public class ImmutableBinaryTree {
             }
             int i = 1;
             parents.add(curr);
-            Node copy = parents.pop().copy();
+            Node copy = new Node(parents.pop());
             copy.getNodes()[path.charAt(path.length() - i) - 48] = null;
 
             while (!parents.isEmpty()) {
                 i++;
                 Node prevCopy = copy;
-                copy = parents.pop().copy();
+                copy = new Node(parents.pop());
                 copy.getNodes()[path.charAt(path.length() - i) - 48] = prevCopy;
             }
 
@@ -89,7 +89,8 @@ public class ImmutableBinaryTree {
         for (int i = 0; i < path.length(); i++) {
             curr = curr.getNodes()[path.charAt(i) - 48];
         }
-        return curr.getValue();
+        if (curr == null) throw new IndexOutOfBoundsException();
+        else return curr.getValue();
     }
 
     @Override

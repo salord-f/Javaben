@@ -45,7 +45,7 @@ public class ImmutableStack {
 	    if (head == null) {
 	        return new ImmutableStack();
         } else {
-            return new ImmutableStack(head.copy());
+            return new ImmutableStack(new Node(head));
         }
 	}
 

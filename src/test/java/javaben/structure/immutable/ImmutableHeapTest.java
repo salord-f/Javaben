@@ -34,14 +34,6 @@ public class ImmutableHeapTest {
 	}
 
 	@Test
-	public void immutableTest() {
-		ImmutableHeap heapA = new ImmutableHeap();
-		ImmutableHeap heapB = heapA.add(10);
-		assertNull(heapA.root);
-		assertNotNull(heapB.root);
-	}
-
-	@Test
 	public void immutabilityTest() {
 		ImmutableHeap heapA = new ImmutableHeap();
 		ImmutableHeap heapB = heapA.add(10);
@@ -53,9 +45,14 @@ public class ImmutableHeapTest {
 		assertNotNull(heapB.root);
 
 		assertEquals(10, (int) heapB.pop().right);
+		assertEquals(10, (int) heapB.pop().right);
+		assertEquals(5, (int) heapC.pop().right);
 		assertEquals(5, (int) heapC.pop().right);
 		assertEquals(5, (int) heapD.pop().right);
+		assertEquals(5, (int) heapD.pop().right);
 		assertEquals(2, (int) heapE.pop().right);
+		assertEquals(2, (int) heapE.pop().right);
+		assertEquals(2, (int) heapF.pop().right);
 		assertEquals(2, (int) heapF.pop().right);
 
 	}
