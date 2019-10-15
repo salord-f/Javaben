@@ -1,16 +1,16 @@
-package javaben.structure.mutable;
+package javaben.structure.immutable;
 
 import javaben.structure.AVLNode;
 
-public class MutableAVL {
+public class ImmutableAVL {
 
     private AVLNode root;
 
-    public MutableAVL() {
+    public ImmutableAVL() {
         this.root = null;
     }
 
-    public MutableAVL(AVLNode root) {
+    public ImmutableAVL(AVLNode root) {
         this.root = root;
     }
 
@@ -25,8 +25,10 @@ public class MutableAVL {
     // A utility function to right rotate subtree rooted with y
     // See the diagram given above.
     private AVLNode rightRotate(AVLNode y) {
-        AVLNode x = (AVLNode) y.getNodes()[0];
+        y = new AVLNode(y);
+        AVLNode x = new AVLNode((AVLNode) y.getNodes()[0]);
         AVLNode T2 = (AVLNode) x.getNodes()[1];
+        ;
 
         // Perform rotation
         x.getNodes()[1] = y;
@@ -43,7 +45,8 @@ public class MutableAVL {
     // A utility function to left rotate subtree rooted with x
     // See the diagram given above.
     private AVLNode leftRotate(AVLNode x) {
-        AVLNode y = (AVLNode) x.getNodes()[1];
+        x = new AVLNode(x);
+        AVLNode y = new AVLNode((AVLNode) x.getNodes()[1]);
         AVLNode T2 = (AVLNode) y.getNodes()[0];
 
         // Perform rotation
@@ -66,14 +69,16 @@ public class MutableAVL {
         return height((AVLNode) N.getNodes()[0]) - height((AVLNode) N.getNodes()[1]);
     }
 
-    public void insert(int value) {
-        root = insert_r(root, value);
+    public ImmutableAVL insert(int value) {
+        return new ImmutableAVL(insert_r(root, value));
     }
 
     private AVLNode insert_r(AVLNode node, int value) {
         /* 1.  Perform the normal BST insertion */
         if (node == null)
             return (new AVLNode(value, 2));
+
+        node = new AVLNode(node);
 
         if (value < node.getValue())
             node.getNodes()[0] = insert_r((AVLNode) node.getNodes()[0], value);
@@ -130,14 +135,16 @@ public class MutableAVL {
         return current;
     }
 
-    public void delete(int value) {
-        root = (delete_r(root, value));
+    public ImmutableAVL delete(int value) {
+        return new ImmutableAVL(delete_r(root, value));
     }
 
     private AVLNode delete_r(AVLNode node, int value) {
         // STEP 1: PERFORM STANDARD BST DELETE
         if (node == null)
             return null;
+
+        node = new AVLNode(node);
 
         // If the value to be deleted is smaller than
         // the node's value, then it lies in left subtree

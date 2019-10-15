@@ -1,5 +1,8 @@
 package javaben.structure;
 
+import lombok.Data;
+
+@Data
 public class AVLNode extends Node {
     private int height;
 
