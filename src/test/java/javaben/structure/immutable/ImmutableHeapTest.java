@@ -7,16 +7,16 @@ import org.junit.Test;
 import static junit.framework.TestCase.assertNotNull;
 import static org.junit.Assert.*;
 
-public class ImmutableMinHeapTest {
+public class ImmutableHeapTest {
 
 	@Test
 	public void minHeapTest() {
-		ImmutableMinHeap heap = new ImmutableMinHeap();
+		ImmutableHeap heap = new ImmutableHeap();
 		for (int i = 30; i > 0; i--) {
-			heap = heap.push(i);
+			heap = heap.add(i);
 		}
 		System.out.println(heap);
-		checkNode(heap.getRoot());
+		checkNode(heap.root);
 	}
 
 	private void checkNode(Node node) {
@@ -35,23 +35,23 @@ public class ImmutableMinHeapTest {
 
 	@Test
 	public void immutableTest() {
-		ImmutableMinHeap heapA = new ImmutableMinHeap();
-		ImmutableMinHeap heapB = heapA.push(10);
-		assertNull(heapA.getRoot());
-		assertNotNull(heapB.getRoot());
+		ImmutableHeap heapA = new ImmutableHeap();
+		ImmutableHeap heapB = heapA.add(10);
+		assertNull(heapA.root);
+		assertNotNull(heapB.root);
 	}
 
 	@Test
 	public void popTest() {
-		ImmutableMinHeap heap = new ImmutableMinHeap();
+		ImmutableHeap heap = new ImmutableHeap();
 
-		heap = heap.push(10);
-		heap = heap.push(1);
-		heap = heap.push(3);
-		heap = heap.push(2);
-		heap = heap.push(5);
+		heap = heap.add(10);
+		heap = heap.add(1);
+		heap = heap.add(3);
+		heap = heap.add(2);
+		heap = heap.add(5);
 
-		Tuple<ImmutableMinHeap, Integer> tuple = heap.pop();
+		Tuple<ImmutableHeap, Integer> tuple = heap.pop();
 		assertEquals(1, (int) tuple.right);
 		heap = tuple.left;
 

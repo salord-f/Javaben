@@ -57,8 +57,7 @@ public class ImmutableBinaryTree {
     public ImmutableBinaryTree removeLast() {
         if (size == 0) {
             throw new EmptyBinaryTreeException();
-        }
-        else if (size == 1) {
+        } else if (size == 1) {
             return new ImmutableBinaryTree(null, 0);
         } else {
             String path = Integer.toBinaryString(size).substring(1);
