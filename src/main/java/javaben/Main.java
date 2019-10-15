@@ -52,8 +52,8 @@ public class Main {
 
 		// Warmup
 		for (Callable item : list) {
-			//Result result = Benchmark.bench(item, null, seconds, 1, seed, Generator.Type.UNSORTED);
-			//System.out.format("%-20s%-40s%s%n", item.getClass().getSimpleName() + " :", "total (iterations) : " + result.iterations, "total (time) : " + result.time / result.iterations);
+			Result result = Benchmark.bench(item, null, seconds, 1, seed, Generator.Type.UNSORTED);
+			System.out.format("%-20s%-40s%s%n", item.getClass().getSimpleName() + " :", "total (iterations) : " + result.iterations, "total (time) : " + result.time / result.iterations);
 		}
 
 		benchmarkStructure(seed, maxPow, args);
