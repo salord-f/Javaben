@@ -28,8 +28,8 @@ public class MutableHeap extends MutableBinaryTree {
                 parents.add(curr);
                 curr = curr.getNodes()[path.charAt(i) - 48];
             }
-            curr.getNodes()[path.charAt(path.length() - 1) - 48] = node;
             parents.add(curr);
+            curr.getNodes()[path.charAt(path.length() - 1) - 48] = node;
             size++;
 
             while (!parents.isEmpty()) {
@@ -57,7 +57,7 @@ public class MutableHeap extends MutableBinaryTree {
         int lastValue = elementAt(size - 1);
         root.setValue(lastValue);
         Node curr = root;
-        removeAt(size - 1);
+        removeLast();
 
         while (curr.getNodes()[0] != null) {
             Node minNode = curr.getNodes()[0];

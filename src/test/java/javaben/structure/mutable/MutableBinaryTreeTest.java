@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 public class MutableBinaryTreeTest {
     private MutableBinaryTree mutableBinaryTree;
@@ -24,11 +25,12 @@ public class MutableBinaryTreeTest {
     }
 
     @Test
-    public void removeAtTest() {
+    public void removeLastTest() {
         for (int i = 0; i < 10; i++) {
             assertEquals(10 - i, mutableBinaryTree.size);
-            mutableBinaryTree.removeAt(9 - i);
+            assertEquals(10 - i, mutableBinaryTree.sizeCheck());
+            mutableBinaryTree.removeLast();
         }
-        assertEquals(0, mutableBinaryTree.size);
+        assertNull(mutableBinaryTree.root);
     }
 }

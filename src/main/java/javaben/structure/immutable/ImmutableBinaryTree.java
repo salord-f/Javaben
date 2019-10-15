@@ -1,32 +1,52 @@
-package javaben.structure.mutable;
+package javaben.structure.immutable;
 
 import javaben.structure.EmptyBinaryTreeException;
 import javaben.structure.Node;
-import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Stack;
 
-@Getter
-public class MutableBinaryTree {
+public class ImmutableBinaryTree {
 
     protected Node root;
-    protected int size = 0;
+    protected int size;
 
-    public void add(int value) {
+    public ImmutableBinaryTree() {
+        this.root = null;
+        this.size = 0;
+    }
+
+    public ImmutableBinaryTree(Node root, int size) {
+        this.root = root;
+        this.size = size;
+    }
+
+    public ImmutableBinaryTree add(int value) {
         if (size == 0) {
-            root = new Node(value, 2);
-            size++;
+            return new ImmutableBinaryTree(new Node(value, 2), 1);
         } else {
             String path = Integer.toBinaryString(size + 1).substring(1);
+            Stack<Node> parents = new Stack<>();
             Node curr = root;
             Node node = new Node(value, 2);
             for (int i = 0; i < path.length() - 1; i++) {
+                parents.add(curr);
                 curr = curr.getNodes()[path.charAt(i) - 48];
             }
-            curr.getNodes()[path.charAt(path.length() - 1) - 48] = node;
-            size++;
+            int i = 1;
+            parents.add(curr);
+            Node copy = parents.pop().copy();
+            copy.getNodes()[path.charAt(path.length() - i) - 48] = node;
+
+            while (!parents.isEmpty()) {
+                i++;
+                Node prevCopy = copy;
+                copy = parents.pop().copy();
+                copy.getNodes()[path.charAt(path.length() - i) - 48] = prevCopy;
+            }
+
+            return new ImmutableBinaryTree(copy, size + 1);
         }
     }
 
@@ -34,21 +54,33 @@ public class MutableBinaryTree {
         return root == null;
     }
 
-    public void removeLast() {
+    public ImmutableBinaryTree removeLast() {
         if (size == 0) {
             throw new EmptyBinaryTreeException();
         }
         else if (size == 1) {
-            root = null;
-            size--;
+            return new ImmutableBinaryTree(null, 0);
         } else {
             String path = Integer.toBinaryString(size).substring(1);
+            Stack<Node> parents = new Stack<>();
             Node curr = root;
             for (int i = 0; i < path.length() - 1; i++) {
+                parents.add(curr);
                 curr = curr.getNodes()[path.charAt(i) - 48];
             }
-            curr.getNodes()[path.charAt(path.length() - 1) - 48] = null;
-            size--;
+            int i = 1;
+            parents.add(curr);
+            Node copy = parents.pop().copy();
+            copy.getNodes()[path.charAt(path.length() - i) - 48] = null;
+
+            while (!parents.isEmpty()) {
+                i++;
+                Node prevCopy = copy;
+                copy = parents.pop().copy();
+                copy.getNodes()[path.charAt(path.length() - i) - 48] = prevCopy;
+            }
+
+            return new ImmutableBinaryTree(copy, size - 1);
         }
     }
 
