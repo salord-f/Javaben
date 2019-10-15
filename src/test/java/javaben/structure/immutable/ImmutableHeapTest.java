@@ -43,14 +43,14 @@ public class ImmutableHeapTest {
 
 	@Test
 	public void immutabilityTest() {
-		ImmutableMinHeap heapA = new ImmutableMinHeap();
-		ImmutableMinHeap heapB = heapA.push(10);
-		ImmutableMinHeap heapC = heapB.push(5);
-		ImmutableMinHeap heapD = heapC.push(6);
-		ImmutableMinHeap heapE = heapD.push(2);
-		ImmutableMinHeap heapF = heapE.push(7);
-		assertNull(heapA.getRoot());
-		assertNotNull(heapB.getRoot());
+		ImmutableHeap heapA = new ImmutableHeap();
+		ImmutableHeap heapB = heapA.add(10);
+		ImmutableHeap heapC = heapB.add(5);
+		ImmutableHeap heapD = heapC.add(6);
+		ImmutableHeap heapE = heapD.add(2);
+		ImmutableHeap heapF = heapE.add(7);
+		assertNull(heapA.root);
+		assertNotNull(heapB.root);
 
 		assertEquals(10, (int) heapB.pop().right);
 		assertEquals(5, (int) heapC.pop().right);
