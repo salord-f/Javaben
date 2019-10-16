@@ -1,5 +1,9 @@
-package javaben;
+package javaben.structure;
 
+import javaben.Callable;
+import javaben.FileWriter;
+import javaben.Generator;
+import javaben.Result;
 import javaben.structure.immutable.*;
 import javaben.structure.mutable.*;
 import javaben.structure.natif.NativeArray;
@@ -7,21 +11,74 @@ import javaben.structure.natif.NativeStack;
 
 import java.util.List;
 
-public class Benchmark {
+public class BenchmarkStructure {
 
-	public static Result bench(Callable callable, String method, long seconds, int size, long seed, Generator.Type type) {
-		callable.init(size, seed, type);
-		return callable.compute(method, seconds);
+	public static void benchmarkStructure(long seed, int maxPow, String[] args) {
+		long seconds = 10;
+
+		Callable callable = null;
+
+		for (int i = 0; i <= maxPow; i++) {
+			int size = (int) Math.pow(2, i);
+			switch (args[0]) {
+				case "MutableArray":
+					callable = new MutableArray(size);
+					break;
+				case "MutableAVL":
+					callable = new MutableAVL();
+					break;
+				case "MutableHeap":
+					callable = new MutableHeap();
+					break;
+				case "MutableQueue":
+					callable = new MutableQueue();
+					break;
+				case "MutableStack":
+					callable = new MutableStack();
+					break;
+				case "ImmutableArray":
+					callable = new ImmutableArray(size);
+					break;
+				case "ImmutableAVL":
+					callable = new ImmutableAVL();
+					break;
+				case "ImmutableHeap":
+					callable = new ImmutableHeap();
+					break;
+				case "ImmutableQueue":
+					callable = new ImmutableQueue();
+					break;
+				case "ImmutableStack":
+					callable = new ImmutableStack();
+					break;
+				case "NativeArray":
+					callable = new NativeArray(size);
+					break;
+				case "NativeStack":
+					callable = new NativeStack();
+					break;
+
+				default:
+					throw new UnsupportedOperationException();
+			}
+			for (int j = 2; j < args.length; j++) {
+				Generator.Type type = Generator.Type.valueOf(args[j]);
+				Result result = BenchmarkStructure.benchOne(callable, args[1], seconds, size, seed, type);
+				long time = result.time / result.iterations;
+				System.out.format("%-20s%-40s%s%n", args[0] + " :", "total (iterations) : " + result.iterations, "total (time) : " + time);
+				FileWriter.writeToFile(callable.getClass().getSimpleName(), args[1], type.name(), size, time);
+			}
+		}
 	}
 
-	public static Result benchStructure(Callable callable, String method, long seconds, int size, long seed, Generator.Type type) {
+	public static Result benchOne(Callable callable, String method, long seconds, int size, long seed, Generator.Type type) {
 
 		List<Integer> list = callable.init(size, seed, type);
 
 		long start, time = 0;
 		long t0 = System.nanoTime();
 		int iterations = 0;
-		while (System.nanoTime() -t0 < seconds * 1000000000) {
+		while (System.nanoTime() - t0 < seconds * 1000000000) {
 			iterations++;
 			callable = setupStructure(callable, method, list);
 			start = System.nanoTime();
