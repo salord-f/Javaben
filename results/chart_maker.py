@@ -24,11 +24,11 @@ files_cat = {
         "AVL delete": [file for file in files if file.endswith('delete_unsortedset.si5')],
         "Heap add (random input)": [file for file in files if file.endswith('add_unsorted.si5')],
         "Heap add (sorted ascending input)": [file for file in files if file.endswith('add_sortedasc.si5')],
-        "Heap add (sorted ascending input)": [file for file in files if file.endswith('add_sorteddesc.si5')],
+        "Heap add (sorted descending input)": [file for file in files if file.endswith('add_sorteddesc.si5')],
         "Heap pop": [file for file in files if file.endswith('heap_pop_unsorted.si5')],
         "Queue enqueue": [file for file in files if file.endswith('enqueue_unsorted.si5')],
         "Queue dequeue": [file for file in files if file.endswith('dequeue_unsorted.si5')],
-        "Stack push": [file for file in files if file.endswith('enqueue_unsorted.si5')],
+        "Stack push": [file for file in files if file.endswith('push_unsorted.si5')],
         "Stack pop": [file for file in files if file.endswith('stack_pop_unsorted.si5')]
 }
 
@@ -49,5 +49,5 @@ for file_cat in files_cat.keys():
     
     ax.set_xscale('log', basex=2)
     ax.set_yscale('log', basey=10)
-    sns.lineplot(x='Size', y='Time', hue='Sort', data=data, ax=ax)
+    sns.lineplot(x='Size', y='Time (in nanoseconds)', hue='Sort', data=data, ax=ax)
     plt.savefig('%s.png' % file_cat)
