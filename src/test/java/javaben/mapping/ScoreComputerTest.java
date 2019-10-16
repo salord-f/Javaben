@@ -17,4 +17,38 @@ public class ScoreComputerTest {
         assertEquals(6, scoreComputer.computeScore(output1));
         assertEquals(6, scoreComputer.computeScore(output2));
     }
+
+    @Test (expected = IllegalStateException.class)
+    public void invalidInputTest1() {
+        String input = "5 6\n0 4\n1 0\n2 1\n3 2\n4 3\n";
+
+        new ScoreComputer(input);
+    }
+
+    @Test (expected = IllegalStateException.class)
+    public void invalidInputTest2() {
+        String input = "5 4\n0 4\n1 0\n2 1\n3 2\n4 3\n";
+
+        new ScoreComputer(input);
+    }
+
+    @Test (expected = IllegalStateException.class)
+    public void invalidOutputTest1() {
+        String input = "5 5\n0 4\n1 0\n2 1\n3 2\n4 3\n";
+        String output = "0 0\n0 0\n0 1\n1 1\n1 0\n";
+
+        ScoreComputer scoreComputer = new ScoreComputer(input);
+
+        scoreComputer.computeScore(output);
+    }
+
+    @Test (expected = IllegalStateException.class)
+    public void invalidOutputTest2() {
+        String input = "5 5\n0 4\n1 0\n2 1\n3 2\n4 3\n";
+        String output = "0 0\n0 1\n0 0\n1 1\n";
+
+        ScoreComputer scoreComputer = new ScoreComputer(input);
+
+        scoreComputer.computeScore(output);
+    }
 }

@@ -19,7 +19,9 @@ public class ScoreComputer {
                 .map(line -> new HashSet<>(Arrays.asList(Integer.parseInt(line.split(" ")[0]), Integer.parseInt(line.split(" ")[1]))))
                 .collect(Collectors.toList());
 
-        assert edgeCount == edges.size();
+        if (edgeCount != edges.size()) {
+            throw new IllegalStateException(String.format("%d edges specified but %d edges found in input.", edgeCount, edges.size()));
+        }
     }
 
     public int computeScore(String output) {
@@ -27,7 +29,9 @@ public class ScoreComputer {
                 .map(line -> Arrays.asList(Integer.parseInt(line.split(" ")[0]), Integer.parseInt(line.split(" ")[1])))
                 .collect(Collectors.toList());
 
-        assert vertexCount == coords.size();
+        if (vertexCount != coords.size()) {
+            throw new IllegalStateException(String.format("%d vertices specified but %d vertices found in output.", vertexCount, coords.size()));
+        }
 
         int score = 0;
 
@@ -52,10 +56,16 @@ public class ScoreComputer {
 
     private int distance(Set<Integer> edge) {
         List<Integer> vertices = new ArrayList<>(edge);
-        int x1 = coords.get(vertices.get(0)).get(0);
-        int x2 = coords.get(vertices.get(1)).get(0);
-        int y1 = coords.get(vertices.get(0)).get(1);
-        int y2 = coords.get(vertices.get(1)).get(1);
-        return Math.abs(x2 - x1) + Math.abs(y2 - y1);
+        int v1 = vertices.get(0);
+        int v2 = vertices.get(1);
+        int x1 = coords.get(v1).get(0);
+        int x2 = coords.get(v2).get(0);
+        int y1 = coords.get(v1).get(1);
+        int y2 = coords.get(v2).get(1);
+        int distance = Math.abs(x2 - x1) + Math.abs(y2 - y1);
+        if (distance == 0) {
+            throw new IllegalStateException(String.format("Components %d and %d both on (%d, %d).", v1, v2, x1, y1));
+        }
+        return distance;
     }
 }
