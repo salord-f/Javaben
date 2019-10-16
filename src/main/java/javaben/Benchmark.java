@@ -34,35 +34,36 @@ public class Benchmark {
 	private static Callable setupStructure(Callable callable, String method, List<Integer> source) {
 		switch (callable.getClass().getSimpleName()) {
 			case "MutableArray":
-				return setupMutableArray((MutableArray) callable, method, source);
+				return setupMutableArray(method, source);
 			case "MutableAVL":
-				return setupMutableAVL((MutableAVL) callable, method, source);
+				return setupMutableAVL(method, source);
 			case "MutableHeap":
-				return setupMutableHeap((MutableHeap) callable, method, source);
+				return setupMutableHeap(method, source);
 			case "MutableQueue":
-				return setupMutableQueue((MutableQueue) callable, method, source);
+				return setupMutableQueue(method, source);
 			case "MutableStack":
-				return setupMutableStack((MutableStack) callable, method, source);
+				return setupMutableStack(method, source);
 			case "ImmutableArray":
-				return setupImmutableArray((ImmutableArray) callable, method, source);
+				return setupImmutableArray(method, source);
 			case "ImmutableAVL":
-				return setupImmutableAVL((ImmutableAVL) callable, method, source);
+				return setupImmutableAVL(method, source);
 			case "ImmutableHeap":
-				return setupImmutableHeap((ImmutableHeap) callable, method, source);
+				return setupImmutableHeap(method, source);
 			case "ImmutableQueue":
-				return setupImmutableQueue((ImmutableQueue) callable, method, source);
+				return setupImmutableQueue(method, source);
 			case "ImmutableStack":
-				return setupImmutableStack((ImmutableStack) callable, method, source);
+				return setupImmutableStack(method, source);
 			case "NativeArray":
-				return setupNativeArray((NativeArray) callable, method, source);
+				return setupNativeArray(method, source);
 			case "NativeStack":
-				return setupNativeStack((NativeStack) callable, method, source);
+				return setupNativeStack(method, source);
 			default:
 				throw new UnsupportedOperationException();
 		}
 	}
 
-	private static Callable setupMutableArray(MutableArray callable, String method, List<Integer> source) {
+	private static Callable setupMutableArray(String method, List<Integer> source) {
+		MutableArray callable = new MutableArray(source.size());
 		switch (method) {
 			case "get-random":
 				for (int i = 0; i < source.size(); i++) {
@@ -78,7 +79,8 @@ public class Benchmark {
 		return callable;
 	}
 
-	private static Callable setupImmutableArray(ImmutableArray callable, String method, List<Integer> source) {
+	private static Callable setupImmutableArray(String method, List<Integer> source) {
+		ImmutableArray callable = new ImmutableArray(source.size());
 		switch (method) {
 			case "get-random":
 				for (int i = 0; i < source.size(); i++) {
@@ -94,7 +96,8 @@ public class Benchmark {
 		return callable;
 	}
 
-	private static Callable setupNativeArray(NativeArray callable, String method, List<Integer> source) {
+	private static Callable setupNativeArray(String method, List<Integer> source) {
+		NativeArray callable = new NativeArray(source.size());
 		switch (method) {
 			case "get-random":
 				for (int i = 0; i < source.size(); i++) {
@@ -111,7 +114,8 @@ public class Benchmark {
 	}
 
 
-	private static Callable setupMutableAVL(MutableAVL callable, String method, List<Integer> source) {
+	private static Callable setupMutableAVL(String method, List<Integer> source) {
+		MutableAVL callable = new MutableAVL();
 		if ("delete".equals(method) || "search".equals(method)) {
 			for (Integer integer : source) {
 				callable.insert(integer);
@@ -120,7 +124,8 @@ public class Benchmark {
 		return callable;
 	}
 
-	private static Callable setupImmutableAVL(ImmutableAVL callable, String method, List<Integer> source) {
+	private static Callable setupImmutableAVL(String method, List<Integer> source) {
+		ImmutableAVL callable = new ImmutableAVL();
 		if ("delete".equals(method) || "search".equals(method)) {
 			for (Integer integer : source) {
 				callable = callable.insert(integer);
@@ -129,7 +134,8 @@ public class Benchmark {
 		return callable;
 	}
 
-	private static Callable setupMutableHeap(MutableHeap callable, String method, List<Integer> source) {
+	private static Callable setupMutableHeap(String method, List<Integer> source) {
+		MutableHeap callable = new MutableHeap();
 		if ("pop".equals(method)) {
 			for (Integer integer : source) {
 				callable.add(integer);
@@ -138,7 +144,8 @@ public class Benchmark {
 		return callable;
 	}
 
-	private static Callable setupImmutableHeap(ImmutableHeap callable, String method, List<Integer> source) {
+	private static Callable setupImmutableHeap(String method, List<Integer> source) {
+		ImmutableHeap callable = new ImmutableHeap();
 		if ("pop".equals(method)) {
 			for (Integer integer : source) {
 				callable = callable.add(integer);
@@ -147,7 +154,8 @@ public class Benchmark {
 		return callable;
 	}
 
-	private static Callable setupMutableQueue(MutableQueue callable, String method, List<Integer> source) {
+	private static Callable setupMutableQueue(String method, List<Integer> source) {
+		MutableQueue callable = new MutableQueue();
 		if ("dequeue".equals(method)) {
 			for (Integer integer : source) {
 				callable.enQueue(integer);
@@ -156,7 +164,8 @@ public class Benchmark {
 		return callable;
 	}
 
-	private static Callable setupImmutableQueue(ImmutableQueue callable, String method, List<Integer> source) {
+	private static Callable setupImmutableQueue(String method, List<Integer> source) {
+		ImmutableQueue callable = new ImmutableQueue();
 		if ("dequeue".equals(method)) {
 			for (Integer integer : source) {
 				callable = callable.enQueue(integer);
@@ -165,7 +174,8 @@ public class Benchmark {
 		return callable;
 	}
 
-	private static Callable setupMutableStack(MutableStack callable, String method, List<Integer> source) {
+	private static Callable setupMutableStack(String method, List<Integer> source) {
+		MutableStack callable = new MutableStack();
 		if ("pop".equals(method)) {
 			for (Integer integer : source) {
 				callable.push(integer);
@@ -174,7 +184,8 @@ public class Benchmark {
 		return callable;
 	}
 
-	private static Callable setupImmutableStack(ImmutableStack callable, String method, List<Integer> source) {
+	private static Callable setupImmutableStack(String method, List<Integer> source) {
+		ImmutableStack callable = new ImmutableStack();
 		if ("pop".equals(method)) {
 			for (Integer integer : source) {
 				callable = callable.push(integer);
@@ -183,7 +194,8 @@ public class Benchmark {
 		return callable;
 	}
 
-	private static Callable setupNativeStack(NativeStack callable, String method, List<Integer> source) {
+	private static Callable setupNativeStack(String method, List<Integer> source) {
+		NativeStack callable = new NativeStack();
 		if ("pop".equals(method)) {
 			for (Integer integer : source) {
 				callable.push(integer);
