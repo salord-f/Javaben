@@ -4,14 +4,14 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
-public class EdgeListNetwork extends Network {
-    private List<Edge> edges;
+public class EdgeSetNetwork extends Network {
+    private Set<Edge> edges;
 
-    public EdgeListNetwork() {
-        edges = new ArrayList<>();
+    public EdgeSetNetwork() {
+        edges = new HashSet<>();
     }
 
     @Override
@@ -29,7 +29,7 @@ public class EdgeListNetwork extends Network {
         }
     }
 
-    public List<Edge> getEdges() {
+    public Set<Edge> getEdges() {
         return edges;
     }
 }
