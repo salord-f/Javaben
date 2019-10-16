@@ -19,8 +19,9 @@ public class Benchmark {
 		List<Integer> list = callable.init(size, seed, type);
 
 		long start, time = 0;
+		long t0 = System.nanoTime();
 		int iterations = 0;
-		while (time < seconds * 1000000000) {
+		while (System.nanoTime() -t0 < seconds * 1000000000) {
 			iterations++;
 			callable = setupStructure(callable, method, list);
 			start = System.nanoTime();
