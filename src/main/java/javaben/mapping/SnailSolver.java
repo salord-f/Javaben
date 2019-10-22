@@ -1,30 +1,27 @@
 package javaben.mapping;
 
-public class SnailSolver implements Solver {
+public class SnailSolver extends Solver {
 
-    @Override
-    public String solve(Network network) {
-        StringBuilder result = new StringBuilder();
+	@Override
+	public String solve(Network network) {
+		int x = 0, y = 0, dx = 0, dy = -1;
+		int snailSize = (int) Math.ceil(Math.sqrt(network.getVerticesCount()));
 
-        int x = 0, y = 0, dx = 0, dy = -1;
-        for (int i = 0; i < network.getVerticesCount(); i++) {
-            result.append("0").append(" ").append(i).append("\n");
-        }
+		for (int i = 0; i < network.getVerticesCount(); ) {
+			if (-snailSize / 2 < x && x <= snailSize / 2 && -snailSize < y && y <= snailSize) {
+				super.build(x, y);
+				i++;
+			}
+			if (x == y || (x < 0 && x == -y) || (x > 0 && x == 1 - y)) {
+				int tmp = dx;
+				dx = -dy;
+				dy = tmp;
+			}
+			x += dx;
+			y += dy;
+		}
 
-		/*
-
-		x = y = 0
-		dx = 0
-		dy = -1
-		for i in range(max(X, Y)**2):
-			if (-X/2 < x <= X/2) and (-Y/2 < y <= Y/2):
-				print (x, y)
-				# DO STUFF...
-			if x == y or (x < 0 and x == -y) or (x > 0 and x == 1-y):
-				dx, dy = -dy, dx
-			x, y = x+dx, y+dy
-		 */
-        return result.toString();
-    }
+		return result.toString();
+	}
 
 }

@@ -1,6 +1,12 @@
 package javaben.mapping;
 
-public interface Solver {
+public abstract class Solver {
 
-    String solve(Network network);
+    StringBuilder result = new StringBuilder();
+
+	abstract String solve(Network network);
+
+	void build(int x, int y) {
+		this.result.append(x).append(" ").append(y).append("\n");
+	}
 }

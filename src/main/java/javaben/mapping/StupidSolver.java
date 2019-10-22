@@ -1,14 +1,13 @@
 package javaben.mapping;
 
-public class StupidSolver implements Solver {
+public class StupidSolver extends Solver {
 
     @Override
     public String solve(Network network) {
-        StringBuilder result = new StringBuilder();
         for (int i = 0; i < network.getVerticesCount(); i++) {
-            result.append("0 ").append(i).append("\n");
+            super.build(0, i);
         }
 
-        return result.toString();
+        return super.result.toString();
     }
 }
