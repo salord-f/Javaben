@@ -51,4 +51,14 @@ public class ScoreComputerTest {
 
         scoreComputer.computeScore(output);
     }
+
+    @Test
+    public void interestingOutputTest() {
+        String input = "5 5\n0 4\n1 0\n2 1\n3 2\n4 3\n";
+        String output = "0 1\n1 1\n1 2\n0 2\n0 0";
+
+        ScoreComputer scoreComputer = new ScoreComputer(input);
+
+        assertEquals(6, scoreComputer.computeScore(output));
+    }
 }
