@@ -1,7 +1,7 @@
 package javaben.structure;
 
 import javaben.Callable;
-import javaben.FileWriter;
+import javaben.io.FileWriter;
 import javaben.Generator;
 import javaben.Result;
 import javaben.structure.immutable.*;

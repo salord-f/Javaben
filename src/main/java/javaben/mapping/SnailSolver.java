@@ -2,14 +2,14 @@ package javaben.mapping;
 
 public class SnailSolver implements Solver {
 
-	@Override
-	public String solve(Network network) {
-		StringBuilder result = new StringBuilder();
+    @Override
+    public String solve(Network network) {
+        StringBuilder result = new StringBuilder();
 
-		int x = 0, y = 0, dx = 0, dy = -1;
-		for (int i = 0; i < network.getVerticesCount(); i++) {
-			result.append("0").append(" ").append(i).append("\n");
-		}
+        int x = 0, y = 0, dx = 0, dy = -1;
+        for (int i = 0; i < network.getVerticesCount(); i++) {
+            result.append("0").append(" ").append(i).append("\n");
+        }
 
 		/*
 
@@ -24,7 +24,7 @@ public class SnailSolver implements Solver {
 				dx, dy = -dy, dx
 			x, y = x+dx, y+dy
 		 */
-		return result.toString();
-	}
+        return result.toString();
+    }
 
 }

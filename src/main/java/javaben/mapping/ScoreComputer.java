@@ -39,11 +39,11 @@ public class ScoreComputer {
                 .collect(Collectors.groupingBy(edge -> edge, Collectors.counting()));
 
         for (Map.Entry<List<Integer>, Long> entry : counters.entrySet()) {
-            score += (3 * (entry.getValue() - 1)); // Overlap
+            score += (3 * Math.pow((entry.getValue() - 1), 2)); // Overlap
         }
 
         for (Set<Integer> edge : edges) {
-            score += (2 * (distance(edge) - 1)); // Distances
+            score += (2 * Math.pow((distance(edge) - 1), 2)); // Distances
         }
 
         int width = coords.stream().mapToInt(c -> c.get(0)).max().getAsInt() - coords.stream().mapToInt(c -> c.get(0)).min().getAsInt();
