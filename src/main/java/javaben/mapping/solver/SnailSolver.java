@@ -7,11 +7,11 @@ public class SnailSolver extends Solver {
 	@Override
 	public String solve(Network network) {
 		int x = 0, y = 0, dx = 0, dy = -1;
-		int snailSize = (int) Math.ceil(Math.sqrt(network.getVerticesCount())) + 1;
+		int offset = network.offset();
 
 		for (int i = 0; i < network.getVerticesCount(); ) {
-			if (-snailSize / 2 < x && x <= snailSize / 2 && -snailSize < y && y <= snailSize) {
-				super.build(x + snailSize, y + snailSize);
+			if (-offset / 2 < x && x <= offset / 2 && -offset < y && y <= offset) {
+				super.build(x + offset, y + offset, i);
 				i++;
 			}
 			if (x == y || (x < 0 && x == -y) || (x > 0 && x == 1 - y)) {
@@ -23,7 +23,7 @@ public class SnailSolver extends Solver {
 			y += dy;
 		}
 
-		return result.toString();
+		return super.export();
 	}
 
 }

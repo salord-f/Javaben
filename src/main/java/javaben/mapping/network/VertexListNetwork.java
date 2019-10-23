@@ -24,7 +24,6 @@ public class VertexListNetwork extends EdgeSetNetwork {
             vertices.add(Vertex.builder()
                     .id(i)
                     .edges(new ArrayList<>())
-                    .neighbours(new ArrayList<>())
                     .build());
         }
         for (Edge edge : getEdges()) {

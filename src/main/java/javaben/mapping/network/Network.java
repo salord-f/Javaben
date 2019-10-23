@@ -30,4 +30,8 @@ public abstract class Network {
     public int getEdgesCount() {
         return edgesCount;
     }
+
+    public int offset() {
+        return (int) Math.ceil(Math.sqrt(this.getVerticesCount())) + 1;
+    }
 }
