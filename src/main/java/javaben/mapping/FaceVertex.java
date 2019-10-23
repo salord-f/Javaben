@@ -4,7 +4,7 @@ import java.util.List;
 
 public class FaceVertex extends Vertex {
 	FaceVertex(int id, List<Edge> edges) {
-		super(id, edges);
+		super(id, edges, null);
 	}
 
 	private Vertex n;

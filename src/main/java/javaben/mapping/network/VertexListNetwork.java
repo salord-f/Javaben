@@ -24,10 +24,13 @@ public class VertexListNetwork extends EdgeSetNetwork {
             vertices.add(Vertex.builder()
                     .id(i)
                     .edges(new ArrayList<>())
+                    .adjacents(new ArrayList<>())
                     .build());
         }
         for (Edge edge : getEdges()) {
             Arrays.stream(edge.getVertices()).forEach(v -> vertices.get(v).getEdges().add(edge));
+            vertices.get(edge.getVertices()[0]).getAdjacents().add(vertices.get(edge.getVertices()[1]));
+            vertices.get(edge.getVertices()[1]).getAdjacents().add(vertices.get(edge.getVertices()[0]));
         }
     }
 }

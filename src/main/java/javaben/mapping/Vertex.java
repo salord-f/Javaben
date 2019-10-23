@@ -12,5 +12,5 @@ import java.util.List;
 public class Vertex {
 	private int id;
 	private List<Edge> edges;
-
+	private List<Vertex> adjacents;
 }
