@@ -11,7 +11,7 @@ public class SnailSolver extends Solver {
 
 		for (int i = 0; i < network.getVerticesCount(); ) {
 			if (-offset / 2 < x && x <= offset / 2 && -offset < y && y <= offset) {
-				super.build(x + offset, y + offset, i);
+				super.build(x + offset, y + offset, i, true);
 				i++;
 			}
 			if (x == y || (x < 0 && x == -y) || (x > 0 && x == 1 - y)) {

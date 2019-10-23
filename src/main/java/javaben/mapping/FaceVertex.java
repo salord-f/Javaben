@@ -1,15 +1,14 @@
 package javaben.mapping;
 
-import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class FaceVertex extends Vertex {
-	FaceVertex(int id, List<Edge> edges) {
-		super(id, edges, null);
-	}
 
-	private Vertex n;
-	private Vertex e;
-	private Vertex w;
-	private Vertex s;
+	public FaceVertex(Vertex vertex) {
+		super(vertex.getId(), vertex.getEdges(), vertex.getAdjacents());
+	}
 
 }
