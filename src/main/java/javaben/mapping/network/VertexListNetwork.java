@@ -1,5 +1,7 @@
-package javaben.mapping;
+package javaben.mapping.network;
 
+import javaben.mapping.Edge;
+import javaben.mapping.Vertex;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -19,7 +21,11 @@ public class VertexListNetwork extends EdgeSetNetwork {
     public void parseNetwork(String network) {
         super.parseNetwork(network);
         for (int i = 0; i < getVerticesCount(); i++) {
-            vertices.add(new Vertex(i, new ArrayList<>()));
+            vertices.add(Vertex.builder()
+                    .id(i)
+                    .edges(new ArrayList<>())
+                    .neighbours(new ArrayList<>())
+                    .build());
         }
         for (Edge edge : getEdges()) {
             Arrays.stream(edge.getVertices()).forEach(v -> vertices.get(v).getEdges().add(edge));

@@ -1,4 +1,6 @@
-package javaben.mapping;
+package javaben.mapping.solver;
+
+import javaben.mapping.network.Network;
 
 public class StupidSolver extends Solver {
 

@@ -1,5 +1,7 @@
 package javaben.mapping;
 
+import javaben.mapping.network.EdgeSetNetwork;
+import javaben.mapping.solver.StupidSolver;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

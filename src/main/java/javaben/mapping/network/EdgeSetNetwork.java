@@ -1,4 +1,6 @@
-package javaben.mapping;
+package javaben.mapping.network;
+
+import javaben.mapping.Edge;
 
 import java.util.*;
 

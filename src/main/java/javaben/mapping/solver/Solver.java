@@ -1,4 +1,7 @@
-package javaben.mapping;
+package javaben.mapping.solver;
+
+import javaben.mapping.network.Network;
+import javaben.mapping.Position;
 
 import java.util.HashMap;
 import java.util.Map;

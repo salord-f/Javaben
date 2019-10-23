@@ -1,4 +1,6 @@
-package javaben.mapping;
+package javaben.mapping.solver;
+
+import javaben.mapping.network.Network;
 
 public class SnailSolver extends Solver {
 
@@ -20,7 +22,7 @@ public class SnailSolver extends Solver {
 			x += dx;
 			y += dy;
 		}
-		
+
 		return result.toString();
 	}
 
