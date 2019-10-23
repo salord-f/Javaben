@@ -15,7 +15,7 @@ public class EdgeSetNetwork extends Network {
 		String[] edges = network.substring(network.indexOf("\n") + 1).split("\n");
 		for (String edge : edges) {
 			String[] v = edge.split(" ");
-			this.edges.add(new Edge(new Vertex(Integer.parseInt(v[0])), new Vertex(Integer.parseInt(v[1]))));
+			this.edges.add(new Edge(Integer.parseInt(v[0]), Integer.parseInt(v[1])));
 		}
 
 	}
@@ -28,8 +28,8 @@ public class EdgeSetNetwork extends Network {
 		Map<Integer, Integer> vertexCount = new LinkedHashMap<>();
 
 		for (Edge edge : edges) {
-			vertexCount.merge(edge.getVertices()[0].getId(), 1, Integer::sum);
-			vertexCount.merge(edge.getVertices()[1].getId(), 1, Integer::sum);
+			vertexCount.merge(edge.getVertices()[0], 1, Integer::sum);
+			vertexCount.merge(edge.getVertices()[1], 1, Integer::sum);
 		}
 
 		List<Integer> ordered = new ArrayList<>();

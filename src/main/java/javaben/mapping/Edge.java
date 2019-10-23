@@ -1,14 +1,14 @@
 package javaben.mapping;
 
 public class Edge {
-    private Vertex[] vertices = new Vertex[2];
+    private int[] vertices = new int[2];
 
-    public Edge(Vertex v1, Vertex v2) {
+    public Edge(int v1, int v2) {
         vertices[0] = v1;
         vertices[1] = v2;
     }
 
-    public Vertex[] getVertices() {
+    public int[] getVertices() {
         return vertices;
     }
 }

@@ -6,6 +6,6 @@ public class FaceSolver extends Solver{
 	@Override
 	String solve(Network network) {
 
-		//return ;
+		return "";
 	}
 }
