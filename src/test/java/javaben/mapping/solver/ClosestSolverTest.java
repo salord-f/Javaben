@@ -1,9 +1,8 @@
-package javaben.mapping;
+package javaben.mapping.solver;
 
 import javaben.io.FileReader;
+import javaben.mapping.ScoreComputer;
 import javaben.mapping.network.VertexListNetwork;
-import javaben.mapping.solver.ClosestSolver;
-import javaben.mapping.solver.Solver;
 import org.junit.Test;
 
 import java.io.IOException;

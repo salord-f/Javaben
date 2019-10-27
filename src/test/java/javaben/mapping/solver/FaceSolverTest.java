@@ -1,8 +1,8 @@
-package javaben.mapping;
+package javaben.mapping.solver;
 
 import javaben.io.FileReader;
+import javaben.mapping.ScoreComputer;
 import javaben.mapping.network.VertexListNetwork;
-import javaben.mapping.solver.FaceSolver;
 import org.junit.Ignore;
 import org.junit.Test;
 
