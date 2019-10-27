@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class SimpleTreeSolver extends Solver {
-    private final int N_EXPAND = 10;
+    private final int N_EXPAND = 1;
     private List<Vertex> vertices;
     private List<Tuple<ImmutableList<Tuple<Vertex, Position>>, Integer>> paths = new ArrayList<>();
     private int maxSize;
@@ -32,9 +32,7 @@ public class SimpleTreeSolver extends Solver {
         }
         for (Tuple<Vertex, Position> vertexPositionTuple : initPath.left) {
             getPositions().put(vertexPositionTuple.left, vertexPositionTuple.right);
-            System.out.println(String.format("Vertex %s / %s %s", vertexPositionTuple.left.getId(), vertexPositionTuple.right.getX(), vertexPositionTuple.right.getY()));
         }
-        System.out.println(export());
         return export();
     }
 
