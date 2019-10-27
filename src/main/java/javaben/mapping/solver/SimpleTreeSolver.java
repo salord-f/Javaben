@@ -9,15 +9,13 @@ import javaben.structure.Tuple;
 import javaben.structure.immutable.ImmutableList;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class SimpleTreeSolver extends Solver {
     private final int N_EXPAND = 10;
     private List<Vertex> vertices;
-    private Set<Tuple<ImmutableList<Tuple<Vertex, Position>>, Integer>> paths = new HashSet<>();
+    private List<Tuple<ImmutableList<Tuple<Vertex, Position>>, Integer>> paths = new ArrayList<>();
     private int maxSize;
 
     @Override
@@ -50,7 +48,7 @@ public class SimpleTreeSolver extends Solver {
                 int score = 0;
                 int overlaps = 1;
                 for (Tuple<Vertex, Position> vertexPositionTuple : currPath.left) {
-                    if (position == vertexPositionTuple.right) {
+                    if (position.equals(vertexPositionTuple.right)) {
                         if (vertexPositionTuple.left.getAdjacents().contains(curr)) {
                             continue outerLoop;
                         }

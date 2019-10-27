@@ -26,6 +26,6 @@ public class Vertex {
 
 	@Override
 	public int hashCode() {
-		return id;
+		return 13 + id * 37;
 	}
 }
