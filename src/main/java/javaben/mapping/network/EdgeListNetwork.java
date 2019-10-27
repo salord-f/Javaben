@@ -4,11 +4,11 @@ import javaben.mapping.Edge;
 
 import java.util.*;
 
-public class EdgeSetNetwork extends Network {
-	private Set<Edge> edges;
+public class EdgeListNetwork extends Network {
+	private List<Edge> edges;
 
-	public EdgeSetNetwork() {
-		edges = new HashSet<>();
+	public EdgeListNetwork() {
+		edges = new ArrayList<>();
 	}
 
 	@Override
@@ -22,7 +22,7 @@ public class EdgeSetNetwork extends Network {
 
 	}
 
-	public Set<Edge> getEdges() {
+	public List<Edge> getEdges() {
 		return edges;
 	}
 

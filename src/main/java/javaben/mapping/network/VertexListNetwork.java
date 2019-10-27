@@ -11,7 +11,7 @@ import java.util.List;
 
 @Getter
 @Setter
-public class VertexListNetwork extends EdgeSetNetwork {
+public class VertexListNetwork extends EdgeListNetwork {
     private List<Vertex> vertices;
 
     public VertexListNetwork() {

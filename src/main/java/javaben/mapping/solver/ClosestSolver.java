@@ -25,6 +25,7 @@ public class ClosestSolver extends Solver {
                 super.build(position.getX(), position.getY(), vertex);
                 for (Vertex neighbour : vertex.getAdjacents()) {
                     if (!done.contains(neighbour)) {
+                        System.out.println(neighbour.getId());
                         Position neighbourPosition = super.getClosestFree(position.getX(), position.getY());
                         super.build(neighbourPosition.getX(), neighbourPosition.getY(), neighbour);
                         done.add(neighbour);
