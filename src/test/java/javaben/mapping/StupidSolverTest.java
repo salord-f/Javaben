@@ -1,8 +1,11 @@
 package javaben.mapping;
 
+import javaben.io.FileReader;
 import javaben.mapping.network.EdgeSetNetwork;
 import javaben.mapping.solver.StupidSolver;
 import org.junit.Test;
+
+import java.io.IOException;
 
 import static org.junit.Assert.assertEquals;
 
@@ -28,5 +31,16 @@ public class StupidSolverTest {
         String output = solver.solve(network);
         ScoreComputer computer = new ScoreComputer(input);
         assertEquals(4125, computer.computeScore(output));
+    }
+
+    @Test
+    public void completInputTest() throws IOException {
+        String input = FileReader.getFileAsString("src/main/resources/mapping/CP.in");
+        StupidSolver solver = new StupidSolver();
+        EdgeSetNetwork network = new EdgeSetNetwork();
+        network.parseNetwork(input);
+        String output = solver.solve(network);
+        ScoreComputer computer = new ScoreComputer(input);
+        assertEquals(8625, computer.computeScore(output));
     }
 }

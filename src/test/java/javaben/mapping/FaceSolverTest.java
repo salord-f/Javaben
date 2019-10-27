@@ -1,8 +1,11 @@
 package javaben.mapping;
 
+import javaben.io.FileReader;
 import javaben.mapping.network.VertexListNetwork;
 import javaben.mapping.solver.FaceSolver;
 import org.junit.Test;
+
+import java.io.IOException;
 
 import static org.junit.Assert.assertEquals;
 
@@ -29,5 +32,17 @@ public class FaceSolverTest {
 		ScoreComputer computer = new ScoreComputer(input);
 		assertEquals(637, computer.computeScore(output));
 
+	}
+
+	@Test
+	public void completInputTest() throws IOException {
+		String input = FileReader.getFileAsString("src/main/resources/mapping/CP.in");
+		FaceSolver solver = new FaceSolver();
+		VertexListNetwork network = new VertexListNetwork();
+		network.parseNetwork(input);
+		String output = solver.solve(network);
+		System.out.println(output);
+		ScoreComputer computer = new ScoreComputer(input);
+		assertEquals(1574, computer.computeScore(output));
 	}
 }
