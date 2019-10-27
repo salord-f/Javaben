@@ -1,5 +1,6 @@
 package javaben.mapping.solver;
 
+import javaben.mapping.Vertex;
 import javaben.mapping.network.Network;
 
 public class SnailSolver extends Solver {
@@ -11,7 +12,7 @@ public class SnailSolver extends Solver {
 
 		for (int i = 0; i < network.getVerticesCount(); ) {
 			if (-offset / 2 < x && x <= offset / 2 && -offset < y && y <= offset) {
-				super.build(x + offset, y + offset, i, true);
+				super.build(x + offset, y + offset, Vertex.builder().id(i).build());
 				i++;
 			}
 			if (x == y || (x < 0 && x == -y) || (x > 0 && x == 1 - y)) {

@@ -3,6 +3,7 @@ package javaben.mapping;
 import javaben.io.FileReader;
 import javaben.mapping.network.EdgeSetNetwork;
 import javaben.mapping.solver.StupidSolver;
+import javafx.geometry.Pos;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -42,5 +43,18 @@ public class StupidSolverTest {
         String output = solver.solve(network);
         ScoreComputer computer = new ScoreComputer(input);
         assertEquals(8625, computer.computeScore(output));
+    }
+
+    @Test
+    public void closestFreeTest() {
+        String input = "5 5\n0 4\n1 0\n2 1\n3 2\n4 3\n";
+        StupidSolver solver = new StupidSolver();
+        EdgeSetNetwork network = new EdgeSetNetwork();
+        network.parseNetwork(input);
+        String output = solver.solve(network);
+        ScoreComputer computer = new ScoreComputer(input);
+        assertEquals(34, computer.computeScore(output));
+        Position position = solver.getClosestFree(0,0);
+        assertEquals(Position.builder().x(1).y(0).build(), position);
     }
 }

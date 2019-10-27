@@ -3,12 +3,15 @@ package javaben.mapping.network;
 import javaben.mapping.Edge;
 import javaben.mapping.Vertex;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 public class VertexListNetwork extends EdgeSetNetwork {
     private List<Vertex> vertices;
 
