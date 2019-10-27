@@ -3,7 +3,6 @@ package javaben.mapping;
 import javaben.io.FileReader;
 import javaben.mapping.network.EdgeSetNetwork;
 import javaben.mapping.solver.StupidSolver;
-import javafx.geometry.Pos;
 import org.junit.Test;
 
 import java.io.IOException;
