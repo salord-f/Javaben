@@ -30,7 +30,7 @@ public class SnailSolverTest {
 		network.parseNetwork(input);
 		String output = solver.solve(network);
 		ScoreComputer computer = new ScoreComputer(input);
-		assertEquals(380, computer.computeScore(output));
+		assertEquals(348, computer.computeScore(output));
 	}
 
 	@Test

@@ -22,8 +22,8 @@ public class FaceSolver extends Solver {
 		int offset = network.offset();
 		//vertices.forEach(System.out::println);
 
-		positions.put(Position.builder().x(offset).y(offset).build(), vertices.get(0));
-		while (positions.size() != vertices.size()) {
+		positions.put(vertices.get(0), Position.builder().x(offset).y(offset).build());
+		/*while (positions.size() != vertices.size()) {
 			for (FaceVertex faceVertex : vertices) {
 				try {
 					Position pos = positions.getKey(faceVertex.getId());
@@ -40,7 +40,7 @@ public class FaceSolver extends Solver {
 				}
 			}
 
-		}
+		}*/
 
 
 		return export();
