@@ -2,7 +2,6 @@ package javaben.mapping.network;
 
 import javaben.mapping.Edge;
 import javaben.mapping.Vertex;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 

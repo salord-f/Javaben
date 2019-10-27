@@ -1,6 +1,5 @@
-package javaben.mapping;
+package javaben.mapping.network;
 
-import javaben.mapping.network.EdgeSetNetwork;
 import org.junit.Test;
 
 import java.util.List;

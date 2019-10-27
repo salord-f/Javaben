@@ -29,7 +29,7 @@ public class ImmutableArrayTest {
         assertEquals(2, (int) immutableArray1.get(1));
     }
 
-    @Test (expected = IndexOutOfBoundsException.class)
+    @Test(expected = IndexOutOfBoundsException.class)
     public void outOfBoundsTest() {
         immutableArray.get(10);
     }

@@ -20,14 +20,14 @@ public class MutableStackTest {
     public void mutableStackPeekTest() {
         MutableStack stackA = new MutableStack();
         stackA.push(1);
-        assertEquals(1, (int) stackA.peek());
+        assertEquals(1, stackA.peek());
     }
 
     @Test
     public void mutableStackPopTest() {
         MutableStack stackA = new MutableStack();
         stackA.push(1);
-        assertEquals(1, (int)stackA.pop());
+        assertEquals(1, (int) stackA.pop());
     }
 
     @Test(expected = EmptyStackException.class)

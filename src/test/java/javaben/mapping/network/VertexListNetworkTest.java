@@ -1,6 +1,5 @@
-package javaben.mapping;
+package javaben.mapping.network;
 
-import javaben.mapping.network.VertexListNetwork;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

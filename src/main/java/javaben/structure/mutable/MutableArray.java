@@ -7,31 +7,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MutableArray extends Structure {
-	private List<Node> nodes;
+    private List<Node> nodes;
 
-	public MutableArray(int size) {
-		nodes = new ArrayList<>();
-		for (int i = 0; i < size; i++) {
-			nodes.add(new Node(null, 0));
-		}
-	}
+    public MutableArray(int size) {
+        nodes = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            nodes.add(new Node(null, 0));
+        }
+    }
 
-	public MutableArray() {
-		nodes = new ArrayList<>();
-	}
+    public MutableArray() {
+        nodes = new ArrayList<>();
+    }
 
-	public void setSize(long size) {
-		for (int i = 0; i < size; i++) {
-			nodes.add(new Node(null, 0));
-		}
-	}
+    public void setSize(long size) {
+        for (int i = 0; i < size; i++) {
+            nodes.add(new Node(null, 0));
+        }
+    }
 
-	public void set(int index, int value) {
-		nodes.get(index).setValue(value);
-	}
+    public void set(int index, int value) {
+        nodes.get(index).setValue(value);
+    }
 
-	public Integer get(int index) {
-		return nodes.get(index).getValue();
-	}
+    public Integer get(int index) {
+        return nodes.get(index).getValue();
+    }
 
 }

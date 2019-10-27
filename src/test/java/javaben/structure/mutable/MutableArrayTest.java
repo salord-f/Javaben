@@ -24,7 +24,7 @@ public class MutableArrayTest {
         assertEquals(4, (int) mutableArray.get(5));
     }
 
-    @Test (expected = IndexOutOfBoundsException.class)
+    @Test(expected = IndexOutOfBoundsException.class)
     public void outOfBoundsTest() {
         mutableArray.get(10);
     }

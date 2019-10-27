@@ -13,44 +13,44 @@ import java.util.stream.Stream;
 @Setter
 public abstract class Solver {
 
-	protected Map<Vertex, Position> positions = new HashMap<>();
+    protected Map<Vertex, Position> positions = new HashMap<>();
 
-	public <K, V> Stream<K> keys(Map<K, V> map, V value) {
-		return map
-				.entrySet()
-				.stream()
-				.filter(entry -> value.equals(entry.getValue()))
-				.map(Map.Entry::getKey);
-	}
+    public <K, V> Stream<K> keys(Map<K, V> map, V value) {
+        return map
+                .entrySet()
+                .stream()
+                .filter(entry -> value.equals(entry.getValue()))
+                .map(Map.Entry::getKey);
+    }
 
-	public abstract String solve(Network network);
+    public abstract String solve(Network network);
 
-	protected void build(int x, int y, Vertex value) {
-		Position position = Position.builder().x(x).y(y).build();
-		positions.put(value, position);
-	}
+    protected void build(int x, int y, Vertex value) {
+        Position position = Position.builder().x(x).y(y).build();
+        positions.put(value, position);
+    }
 
-	protected String export() {
-		StringBuilder builder = new StringBuilder();
+    protected String export() {
+        StringBuilder builder = new StringBuilder();
 
-		List<Position> ordered = new ArrayList<>();
-		positions.entrySet().stream()
-				.sorted(Map.Entry.comparingByKey(Comparator.comparingInt(Vertex::getId)))
-				.forEach(v -> ordered.add(v.getValue()));
-		for (Position position : ordered) {
-			builder.append(position.getX()).append(" ").append(position.getY()).append("\n");
-		}
+        List<Position> ordered = new ArrayList<>();
+        positions.entrySet().stream()
+                .sorted(Map.Entry.comparingByKey(Comparator.comparingInt(Vertex::getId)))
+                .forEach(v -> ordered.add(v.getValue()));
+        for (Position position : ordered) {
+            builder.append(position.getX()).append(" ").append(position.getY()).append("\n");
+        }
 
-		return builder.toString();
+        return builder.toString();
 
-	}
+    }
 
-	protected List<Vertex> getAdjacents(Position position) {
-		List<Vertex> adjacents = new ArrayList<>();
-		return adjacents;
-	}
+    protected List<Vertex> getAdjacents(Position position) {
+        List<Vertex> adjacents = new ArrayList<>();
+        return adjacents;
+    }
 
-	public Position getClosestFree(int x, int y) {
+    public Position getClosestFree(int x, int y) {
 
 		/*int dx = 0, dy = -1;
 		int offsetx = x;
@@ -70,26 +70,26 @@ public abstract class Solver {
 			x += dx;
 			y += dy;
 		}*/
-		int size = 1;
+        int size = 1;
 
-		while (true) {
-			for (int i = 0; i < size; i++) {
-				if (keys(positions, Position.builder().x(x + i).y(y + size).build()).count() == 0) {
-					return Position.builder().x(x + i).y(y + size).build();
-				}
-				if (keys(positions, Position.builder().x(x - i).y(y + size).build()).count() == 0) {
-					return Position.builder().x(x - i).y(y + size).build();
-				}
-				if (keys(positions, Position.builder().x(x + size).y(y + i).build()).count() == 0) {
-					return Position.builder().x(x + size).y(y + i).build();
-				}
-				if (keys(positions, Position.builder().x(x + size).y(y - i).build()).count() == 0) {
-					return Position.builder().x(x + size).y(y - i).build();
-				}
+        while (true) {
+            for (int i = 0; i < size; i++) {
+                if (keys(positions, Position.builder().x(x + i).y(y + size).build()).count() == 0) {
+                    return Position.builder().x(x + i).y(y + size).build();
+                }
+                if (keys(positions, Position.builder().x(x - i).y(y + size).build()).count() == 0) {
+                    return Position.builder().x(x - i).y(y + size).build();
+                }
+                if (keys(positions, Position.builder().x(x + size).y(y + i).build()).count() == 0) {
+                    return Position.builder().x(x + size).y(y + i).build();
+                }
+                if (keys(positions, Position.builder().x(x + size).y(y - i).build()).count() == 0) {
+                    return Position.builder().x(x + size).y(y - i).build();
+                }
 
-			}
-			size++;
+            }
+            size++;
 
-		}
-	}
+        }
+    }
 }

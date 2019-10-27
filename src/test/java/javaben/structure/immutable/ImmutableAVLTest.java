@@ -1,7 +1,6 @@
 package javaben.structure.immutable;
 
 import javaben.structure.AVLNode;
-import javaben.structure.immutable.ImmutableAVL;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
