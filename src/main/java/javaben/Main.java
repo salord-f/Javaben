@@ -2,6 +2,7 @@ package javaben;
 
 import javaben.basic.Addition;
 import javaben.basic.Multiplication;
+import javaben.mapping.BenchmarkMapping;
 import javaben.sort.BenchmarkSort;
 
 import java.io.File;
@@ -37,8 +38,8 @@ public class Main {
         int maxPow = 20;
 
         List<Callable> list = new ArrayList<>();
-        list.add(new Addition());
-        list.add(new Multiplication());
+        //list.add(new Addition());
+        //list.add(new Multiplication());
 
         // Warmup
         for (Callable item : list) {
@@ -48,7 +49,7 @@ public class Main {
 
         //BenchmarkSort.benchmarkSort(maxPow, seed);
         //BenchmarkStructure.benchmarkStructure(seed, maxPow, args);
-
+        BenchmarkMapping.benchmark();
 
     }
 

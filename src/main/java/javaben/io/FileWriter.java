@@ -19,4 +19,16 @@ public class FileWriter {
             System.out.println("Error while writing file : " + e.getMessage());
         }
     }
+
+    public static void writeToFile(String name, String initType, String method, String file, long time) {
+        String filename = name + "_" + initType + "_" + method + ".si5";
+        Path path = Paths.get("results/" + filename.toLowerCase());
+
+        try (BufferedWriter writer = Files.newBufferedWriter(path, StandardOpenOption.CREATE, StandardOpenOption.APPEND)) {
+            PrintWriter printWriter = new PrintWriter(writer);
+            printWriter.println(file + " " + time);
+        } catch (Exception e) {
+            System.out.println("Error while writing file : " + e.getMessage());
+        }
+    }
 }
