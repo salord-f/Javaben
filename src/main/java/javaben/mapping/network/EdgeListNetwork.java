@@ -5,7 +5,7 @@ import javaben.mapping.Edge;
 import java.util.*;
 
 public class EdgeListNetwork extends Network {
-	private List<Edge> edges;
+	protected List<Edge> edges;
 
 	public EdgeListNetwork() {
 		edges = new ArrayList<>();
@@ -40,5 +40,11 @@ public class EdgeListNetwork extends Network {
 				.forEach(v -> ordered.add(v.getKey()));
 
 		return ordered;
+	}
+
+	@Override
+	public void clean() {
+		super.clean();
+		edges.clear();
 	}
 }

@@ -37,4 +37,10 @@ public class ClosestSolver extends Solver {
         }
         return export();
     }
+
+    @Override
+    public void clean() {
+        super.clean();
+        this.done.clear();
+    }
 }

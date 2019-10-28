@@ -59,4 +59,10 @@ public class SimpleTreeSolver extends Solver {
     private Vertex next(Vertex vertex) {
         return vertices.get(vertices.indexOf(vertex) + 1);
     }
+
+    @Override
+    public void clean() {
+        super.clean();
+        vertices.clear();
+    }
 }

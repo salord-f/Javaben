@@ -2,10 +2,13 @@ package javaben.mapping;
 
 import javaben.io.FileReader;
 import javaben.io.FileWriter;
+import javaben.mapping.network.EdgeListNetwork;
 import javaben.mapping.network.Network;
 import javaben.mapping.network.VertexListNetwork;
 import javaben.mapping.solver.SimpleTreeSolver;
+import javaben.mapping.solver.SnailSolver;
 import javaben.mapping.solver.Solver;
+import javaben.mapping.solver.StupidSolver;
 import javaben.structure.Tuple;
 
 import java.io.File;
@@ -30,15 +33,16 @@ public class BenchmarkMapping {
 		long seconds = 10;
 
 		List<Tuple<Network, Solver>> list = new ArrayList<>();
-		//list.add(new Tuple<>(new EdgeListNetwork(), new StupidSolver()));
-		//list.add(new Tuple<>(new EdgeListNetwork(), new SnailSolver()));
+		list.add(new Tuple<>(new EdgeListNetwork(), new StupidSolver()));
+		list.add(new Tuple<>(new EdgeListNetwork(), new SnailSolver()));
 		list.add(new Tuple<>(new VertexListNetwork(), new SimpleTreeSolver()));
 
 
 		for (Tuple item : list) {
 			for (File file : Objects.requireNonNull(folder.listFiles())) {
+
 				System.out.println(file.getName());
-				
+
 				long start, time = 0;
 				long t0 = System.nanoTime();
 				int iterations = 0;
@@ -48,10 +52,18 @@ public class BenchmarkMapping {
 
 				while (System.nanoTime() - t0 < seconds * 1000000000) {
 					iterations++;
-					((Network) item.left).parseNetwork(input);
+
+					Network network = ((Network) item.left);
+					Solver solver = ((Solver) item.right);
+
+					network.parseNetwork(input);
+
 					start = System.nanoTime();
-					output = ((Solver) item.right).solve((Network) item.left);
+					output = solver.solve(network);
 					time += System.nanoTime() - start;
+
+					solver.clean();
+					network.clean();
 				}
 
 				long totalTime = time / iterations;

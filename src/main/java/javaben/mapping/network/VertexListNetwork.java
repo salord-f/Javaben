@@ -35,4 +35,10 @@ public class VertexListNetwork extends EdgeListNetwork {
             vertices.get(edge.getVertices()[1]).getAdjacents().add(vertices.get(edge.getVertices()[0]));
         }
     }
+
+    @Override
+    public void clean() {
+        super.clean();
+        vertices.clear();
+    }
 }

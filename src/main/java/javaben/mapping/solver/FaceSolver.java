@@ -45,4 +45,10 @@ public class FaceSolver extends Solver {
 
 		return export();
 	}
+
+	@Override
+	public void clean() {
+		super.clean();
+		vertices.clear();
+	}
 }

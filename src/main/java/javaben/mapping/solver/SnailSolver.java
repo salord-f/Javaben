@@ -27,4 +27,9 @@ public class SnailSolver extends Solver {
         return super.export();
     }
 
+    @Override
+    public void clean() {
+        super.clean();
+    }
+
 }

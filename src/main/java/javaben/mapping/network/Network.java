@@ -5,8 +5,8 @@ import javaben.io.FileReader;
 import java.io.IOException;
 
 public abstract class Network {
-    private int verticesCount;
-    private int edgesCount;
+    protected int verticesCount;
+    protected int edgesCount;
 
     public void readFile(String filepath) {
         try {
@@ -33,5 +33,10 @@ public abstract class Network {
 
     public int offset() {
         return (int) Math.floor(Math.sqrt(this.getVerticesCount())) + 1;
+    }
+
+    public void clean() {
+        this.verticesCount = 0;
+        this.edgesCount = 0;
     }
 }
