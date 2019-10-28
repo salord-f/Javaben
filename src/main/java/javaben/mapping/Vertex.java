@@ -13,6 +13,7 @@ public class Vertex {
 	private int id;
 	private List<Edge> edges;
 	private List<Vertex> adjacents;
+	private Position position;
 
 	@Override
 	public boolean equals(Object o) {

@@ -19,7 +19,7 @@ public class ClosestSolverTest {
         network.parseNetwork(input);
         String output = solver.solve(network);
         ScoreComputer computer = new ScoreComputer(input);
-        assertEquals(22, computer.computeScore(output));
+        assertEquals(14, computer.computeScore(output));
     }
 
     @Test
@@ -30,7 +30,7 @@ public class ClosestSolverTest {
         network.parseNetwork(input);
         String output = solver.solve(network);
         ScoreComputer computer = new ScoreComputer(input);
-        assertEquals(632, computer.computeScore(output));
+        assertEquals(489, computer.computeScore(output));
 
     }
 
@@ -43,7 +43,7 @@ public class ClosestSolverTest {
         String output = solver.solve(network);
         System.out.println(output);
         ScoreComputer computer = new ScoreComputer(input);
-        assertEquals(1890, computer.computeScore(output));
+        assertEquals(1203, computer.computeScore(output));
     }
 
 }

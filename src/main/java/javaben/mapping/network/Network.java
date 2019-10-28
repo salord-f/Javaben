@@ -32,6 +32,6 @@ public abstract class Network {
     }
 
     public int offset() {
-        return (int) Math.ceil(Math.sqrt(this.getVerticesCount())) + 1;
+        return (int) Math.floor(Math.sqrt(this.getVerticesCount())) + 1;
     }
 }

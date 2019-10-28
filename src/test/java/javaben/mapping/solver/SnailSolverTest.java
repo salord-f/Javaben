@@ -30,11 +30,11 @@ public class SnailSolverTest {
         network.parseNetwork(input);
         String output = solver.solve(network);
         ScoreComputer computer = new ScoreComputer(input);
-        assertEquals(348, computer.computeScore(output));
+        assertEquals(364, computer.computeScore(output));
     }
 
     @Test
-    public void completInputTest() throws IOException {
+    public void completeInputTest() throws IOException {
         String input = FileReader.getFileAsString("src/main/resources/mapping/CP.in");
         SnailSolver solver = new SnailSolver();
         EdgeListNetwork network = new EdgeListNetwork();

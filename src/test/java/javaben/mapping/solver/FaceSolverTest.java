@@ -37,7 +37,7 @@ public class FaceSolverTest {
 	}
 
 	@Test
-	public void completInputTest() throws IOException {
+	public void completeInputTest() throws IOException {
 		String input = FileReader.getFileAsString("src/main/resources/mapping/CP.in");
 		FaceSolver solver = new FaceSolver();
 		VertexListNetwork network = new VertexListNetwork();
