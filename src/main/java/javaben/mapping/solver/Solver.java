@@ -51,43 +51,21 @@ public abstract class Solver {
 	public Tuple<Integer, Size> additionalScoreAndNewSize(Position newPosition, Vertex v, Size formerSize) {
 		int score = 0;
 
-		if (positions.size() > v.getAdjacents().size()) {
-			for (Vertex vertex : v.getAdjacents()) {
-				Position position = vertex.getPosition();
-				if (position != null) {
-					if (position.equals(newPosition)) {
-						return new Tuple<>(1000000000, null);
-					}
-					score += (2 * Math.pow(position.distanceFrom(newPosition) - 1, 2));
-				}
-			}
+        for (Vertex vertex : v.getAdjacents()) {
+            Position position = vertex.getPosition();
+            if (position != null) {
+                if (position.equals(newPosition)) {
+                    return new Tuple<>(1000000000, null);
+                }
+                score += (2 * Math.pow(position.distanceFrom(newPosition) - 1, 2));
+            }
+        }
 
-			Integer overlaps = positionCounters.get(newPosition);
+        Integer overlaps = positionCounters.get(newPosition);
 
-			if (overlaps != null) {
-				score += ((2 * Math.pow(overlaps, 2)) - (2 * Math.pow(overlaps - 1, 2)));
-			}
-		} else {
-			int overlaps = 0;
-
-			for (Map.Entry<Vertex, Position> entry : positions.entrySet()) {
-				Vertex vertex = entry.getKey();
-				Position position = entry.getValue();
-				if (v.getAdjacents().contains(vertex)) {
-					if (position.equals(newPosition)) {
-						return new Tuple<>(1000000000, null);
-					}
-					score += (2 * Math.pow(position.distanceFrom(newPosition) - 1, 2));
-				} else if (position.equals(newPosition)) {
-					overlaps++;
-				}
-			}
-
-			if (overlaps > 0) {
-				score += ((2 * Math.pow(overlaps, 2)) - (2 * Math.pow(overlaps - 1, 2)));
-			}
+        if (overlaps != null) {
+            score += ((2 * Math.pow(overlaps, 2)) - (2 * Math.pow(overlaps - 1, 2)));
 		}
-
 
 		Size newSize;
 
