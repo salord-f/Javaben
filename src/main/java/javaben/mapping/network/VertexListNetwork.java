@@ -12,33 +12,33 @@ import java.util.List;
 @Getter
 @Setter
 public class VertexListNetwork extends EdgeListNetwork {
-    private List<Vertex> vertices;
+	private List<Vertex> vertices;
 
-    public VertexListNetwork() {
-        super();
-        vertices = new ArrayList<>();
-    }
+	public VertexListNetwork() {
+		super();
+		vertices = new ArrayList<>();
+	}
 
-    @Override
-    public void parseNetwork(String network) {
-        super.parseNetwork(network);
-        for (int i = 0; i < getVerticesCount(); i++) {
-            vertices.add(Vertex.builder()
-                    .id(i)
-                    .edges(new ArrayList<>())
-                    .adjacents(new ArrayList<>())
-                    .build());
-        }
-        for (Edge edge : getEdges()) {
-            Arrays.stream(edge.getVertices()).forEach(v -> vertices.get(v).getEdges().add(edge));
-            vertices.get(edge.getVertices()[0]).getAdjacents().add(vertices.get(edge.getVertices()[1]));
-            vertices.get(edge.getVertices()[1]).getAdjacents().add(vertices.get(edge.getVertices()[0]));
-        }
-    }
+	@Override
+	public void parseNetwork(String network) {
+		super.parseNetwork(network);
+		for (int i = 0; i < getVerticesCount(); i++) {
+			vertices.add(Vertex.builder()
+					.id(i)
+					.edges(new ArrayList<>())
+					.adjacents(new ArrayList<>())
+					.build());
+		}
+		for (Edge edge : getEdges()) {
+			Arrays.stream(edge.getVertices()).forEach(v -> vertices.get(v).getEdges().add(edge));
+			vertices.get(edge.getVertices()[0]).getAdjacents().add(vertices.get(edge.getVertices()[1]));
+			vertices.get(edge.getVertices()[1]).getAdjacents().add(vertices.get(edge.getVertices()[0]));
+		}
+	}
 
-    @Override
-    public void clean() {
-        super.clean();
-        vertices.clear();
-    }
+	@Override
+	public void clean() {
+		super.clean();
+		vertices.clear();
+	}
 }

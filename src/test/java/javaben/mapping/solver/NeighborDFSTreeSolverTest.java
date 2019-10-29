@@ -17,7 +17,8 @@ public class NeighborDFSTreeSolverTest {
         NeighborDFSTreeSolver solver = new NeighborDFSTreeSolver();
         VertexListNetwork network = new VertexListNetwork();
         network.parseNetwork(input);
-        String output = solver.solve(network);
+        solver.setup(network, false);
+        String output = solver.solve();
         ScoreComputer computer = new ScoreComputer(input);
         assertEquals(6, computer.computeScore(output));
     }
@@ -28,7 +29,8 @@ public class NeighborDFSTreeSolverTest {
         NeighborDFSTreeSolver solver = new NeighborDFSTreeSolver();
         VertexListNetwork network = new VertexListNetwork();
         network.parseNetwork(input);
-        String output = solver.solve(network);
+        solver.setup(network, false);
+        String output = solver.solve();
         ScoreComputer computer = new ScoreComputer(input);
         assertEquals(73, computer.computeScore(output));
 
@@ -40,7 +42,8 @@ public class NeighborDFSTreeSolverTest {
         NeighborDFSTreeSolver solver = new NeighborDFSTreeSolver();
         VertexListNetwork network = new VertexListNetwork();
         network.parseNetwork(input);
-        String output = solver.solve(network);
+        solver.setup(network, false);
+        String output = solver.solve();
         System.out.println(output);
         ScoreComputer computer = new ScoreComputer(input);
         assertEquals(1000, computer.computeScore(output));

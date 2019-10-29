@@ -17,13 +17,13 @@ public class Main {
             System.out.println(arg);
         }
 
+        File folder = new File("./results/");
+        if (!folder.exists()) {
+            folder.mkdir();
+        }
+
         if (args.length >= 2) {
             System.out.println("Wrong number of arguments, expected structure name and method call");
-            File folder = new File("./results/");
-            if (!folder.exists()) {
-                folder.mkdir();
-            }
-
             for (File f : folder.listFiles()) {
                 if ((args[0] + "_" + args[1] + "_" + args[2] + ".si5").toLowerCase().equals(f.getName())) {
                     f.delete();
@@ -38,8 +38,8 @@ public class Main {
         int maxPow = 20;
 
         List<Callable> list = new ArrayList<>();
-        //list.add(new Addition());
-        //list.add(new Multiplication());
+        list.add(new Addition());
+        list.add(new Multiplication());
 
         // Warmup
         for (Callable item : list) {

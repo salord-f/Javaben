@@ -17,7 +17,8 @@ public class ClosestSolverTest {
         Solver solver = new ClosestSolver();
         VertexListNetwork network = new VertexListNetwork();
         network.parseNetwork(input);
-        String output = solver.solve(network);
+        solver.setup(network, false);
+        String output = solver.solve();
         ScoreComputer computer = new ScoreComputer(input);
         assertEquals(14, computer.computeScore(output));
     }
@@ -28,7 +29,8 @@ public class ClosestSolverTest {
         Solver solver = new ClosestSolver();
         VertexListNetwork network = new VertexListNetwork();
         network.parseNetwork(input);
-        String output = solver.solve(network);
+        solver.setup(network, false);
+        String output = solver.solve();
         ScoreComputer computer = new ScoreComputer(input);
         assertEquals(489, computer.computeScore(output));
 
@@ -40,7 +42,8 @@ public class ClosestSolverTest {
         Solver solver = new ClosestSolver();
         VertexListNetwork network = new VertexListNetwork();
         network.parseNetwork(input);
-        String output = solver.solve(network);
+        solver.setup(network, false);
+        String output = solver.solve();
         System.out.println(output);
         ScoreComputer computer = new ScoreComputer(input);
         assertEquals(1203, computer.computeScore(output));

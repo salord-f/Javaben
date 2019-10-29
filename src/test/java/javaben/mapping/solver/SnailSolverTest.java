@@ -17,7 +17,8 @@ public class SnailSolverTest {
         SnailSolver solver = new SnailSolver();
         EdgeListNetwork network = new EdgeListNetwork();
         network.parseNetwork(input);
-        String output = solver.solve(network);
+        solver.setup(network, false);
+        String output = solver.solve();
         ScoreComputer computer = new ScoreComputer(input);
         assertEquals(6, computer.computeScore(output));
     }
@@ -28,7 +29,8 @@ public class SnailSolverTest {
         SnailSolver solver = new SnailSolver();
         EdgeListNetwork network = new EdgeListNetwork();
         network.parseNetwork(input);
-        String output = solver.solve(network);
+        solver.setup(network, false);
+        String output = solver.solve();
         ScoreComputer computer = new ScoreComputer(input);
         assertEquals(348, computer.computeScore(output));
     }
@@ -39,7 +41,8 @@ public class SnailSolverTest {
         SnailSolver solver = new SnailSolver();
         EdgeListNetwork network = new EdgeListNetwork();
         network.parseNetwork(input);
-        String output = solver.solve(network);
+        solver.setup(network, false);
+        String output = solver.solve();
         ScoreComputer computer = new ScoreComputer(input);
         assertEquals(1049, computer.computeScore(output));
     }

@@ -3,7 +3,9 @@ package javaben.mapping.solver;
 import javaben.mapping.Position;
 import javaben.mapping.Size;
 import javaben.mapping.Vertex;
+import javaben.mapping.network.EdgeListNetwork;
 import javaben.mapping.network.Network;
+import javaben.mapping.optimizer.NaiveSwapOptimizer;
 import javaben.structure.Tuple;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,6 +19,8 @@ public abstract class Solver {
 
 	protected Map<Vertex, Position> positions = new HashMap<>();
 	protected Map<Position, Integer> positionCounters = new HashMap<>();
+	protected Network network;
+	protected boolean optimized;
 
 	public <K, V> Stream<K> keys(Map<K, V> map, V value) {
 		return map
@@ -26,7 +30,12 @@ public abstract class Solver {
 				.map(Map.Entry::getKey);
 	}
 
-	public abstract String solve(Network network);
+	public void setup(Network network, boolean optimized) {
+		this.network = network;
+		this.optimized = optimized;
+	}
+
+	public abstract String solve();
 
 	protected void build(int x, int y, Vertex value) {
 		Position position = Position.builder().x(x).y(y).build();
@@ -34,6 +43,11 @@ public abstract class Solver {
 	}
 
 	protected String export() {
+		if (optimized) {
+			NaiveSwapOptimizer optimizer = new NaiveSwapOptimizer(positions, (EdgeListNetwork) network);
+			positions = optimizer.optimize();
+		}
+
 		StringBuilder builder = new StringBuilder();
 
 		List<Position> ordered = new ArrayList<>();
@@ -51,20 +65,20 @@ public abstract class Solver {
 	public Tuple<Integer, Size> additionalScoreAndNewSize(Position newPosition, Vertex v, Size formerSize) {
 		int score = 0;
 
-        for (Vertex vertex : v.getAdjacents()) {
-            Position position = vertex.getPosition();
-            if (position != null) {
-                if (position.equals(newPosition)) {
-                    return new Tuple<>(1000000000, null);
-                }
-                score += (2 * Math.pow(position.distanceFrom(newPosition) - 1, 2));
-            }
-        }
+		for (Vertex vertex : v.getAdjacents()) {
+			Position position = vertex.getPosition();
+			if (position != null) {
+				if (position.equals(newPosition)) {
+					return new Tuple<>(1000000000, null);
+				}
+				score += (2 * Math.pow(position.distanceFrom(newPosition) - 1, 2));
+			}
+		}
 
-        Integer overlaps = positionCounters.get(newPosition);
+		Integer overlaps = positionCounters.get(newPosition);
 
-        if (overlaps != null) {
-            score += ((2 * Math.pow(overlaps, 2)) - (2 * Math.pow(overlaps - 1, 2)));
+		if (overlaps != null) {
+			score += ((2 * Math.pow(overlaps, 2)) - (2 * Math.pow(overlaps - 1, 2)));
 		}
 
 		Size newSize;

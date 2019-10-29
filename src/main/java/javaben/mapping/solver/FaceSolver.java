@@ -3,7 +3,6 @@ package javaben.mapping.solver;
 import javaben.mapping.FaceVertex;
 import javaben.mapping.Position;
 import javaben.mapping.Vertex;
-import javaben.mapping.network.Network;
 import javaben.mapping.network.VertexListNetwork;
 
 import java.util.ArrayList;
@@ -11,18 +10,18 @@ import java.util.List;
 
 public class FaceSolver extends Solver {
 
-    private List<FaceVertex> vertices = new ArrayList<>();
+	private List<FaceVertex> vertices = new ArrayList<>();
 
-    @Override
-    public String solve(Network network) {
-        for (Vertex vertex : ((VertexListNetwork) network).getVertices()) {
-            vertices.add(new FaceVertex(vertex));
-            System.out.println(vertex.getId());
-        }
-        int offset = network.getVerticesCount();
-        //vertices.forEach(System.out::println);
+	@Override
+	public String solve() {
+		for (Vertex vertex : ((VertexListNetwork) network).getVertices()) {
+			vertices.add(new FaceVertex(vertex));
+			System.out.println(vertex.getId());
+		}
+		int offset = network.getVerticesCount();
+		//vertices.forEach(System.out::println);
 
-        positions.put(vertices.get(0), Position.builder().x(offset).y(offset).build());
+		positions.put(vertices.get(0), Position.builder().x(offset).y(offset).build());
 		/*while (positions.size() != vertices.size()) {
 			for (FaceVertex faceVertex : vertices) {
 				try {
@@ -43,12 +42,12 @@ public class FaceSolver extends Solver {
 		}*/
 
 
-        return export();
-    }
+		return export();
+	}
 
-    @Override
-    public void clean() {
-        super.clean();
-        vertices.clear();
-    }
+	@Override
+	public void clean() {
+		super.clean();
+		vertices.clear();
+	}
 }

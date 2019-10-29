@@ -6,7 +6,7 @@ import javaben.mapping.network.EdgeListNetwork;
 import javaben.mapping.network.Network;
 import javaben.mapping.network.VertexListNetwork;
 import javaben.mapping.solver.*;
-import javaben.structure.Tuple;
+import javaben.structure.Truple;
 
 import java.io.File;
 import java.io.IOException;
@@ -29,17 +29,30 @@ public class BenchmarkMapping {
 
 		long seconds = 10;
 
-		List<Tuple<Network, Solver>> list = new ArrayList<>();
-		list.add(new Tuple<>(new EdgeListNetwork(), new StupidSolver()));
-		list.add(new Tuple<>(new EdgeListNetwork(), new SnailSolver()));
-		list.add(new Tuple<>(new VertexListNetwork(), new ClosestSolver()));
-        list.add(new Tuple<>(new VertexListNetwork(), new SimpleWideTreeSolver()));
-        list.add(new Tuple<>(new VertexListNetwork(), new SimpleTightTreeSolver()));
-		list.add(new Tuple<>(new VertexListNetwork(), new NeighborBFSTreeSolver()));
-		list.add(new Tuple<>(new VertexListNetwork(), new NeighborDFSTreeSolver()));
+		List<Truple<Network, Solver>> list = new ArrayList<>();
+		list.add(new Truple<>(new EdgeListNetwork(), new LineSolver(), false));
+		list.add(new Truple<>(new EdgeListNetwork(), new SnailSolver(), false));
+		list.add(new Truple<>(new VertexListNetwork(), new ClosestSolver(), false));
+		list.add(new Truple<>(new VertexListNetwork(), new SimpleWideTreeSolver(), false));
+		list.add(new Truple<>(new VertexListNetwork(), new SimpleTightTreeSolver(), false));
+		list.add(new Truple<>(new VertexListNetwork(), new NeighborBFSTreeSolver(), false));
+		list.add(new Truple<>(new VertexListNetwork(), new NeighborDFSTreeSolver(), false));
+
+		list.add(new Truple<>(new EdgeListNetwork(), new LineSolver(), true));
+		list.add(new Truple<>(new EdgeListNetwork(), new SnailSolver(), true));
+		list.add(new Truple<>(new VertexListNetwork(), new ClosestSolver(), true));
+		list.add(new Truple<>(new VertexListNetwork(), new SimpleWideTreeSolver(), true));
+		list.add(new Truple<>(new VertexListNetwork(), new SimpleTightTreeSolver(), true));
+		list.add(new Truple<>(new VertexListNetwork(), new NeighborBFSTreeSolver(), true));
+		list.add(new Truple<>(new VertexListNetwork(), new NeighborDFSTreeSolver(), true));
 
 
-		for (Tuple item : list) {
+		for (Truple item : list) {
+			String filename = ("results/" + item.right.getClass().getSimpleName() + "_" + item.isBool() + ".si5").toLowerCase();
+			File oldFile = new File(filename);
+			if (oldFile.exists()) {
+				oldFile.delete();
+			}
 			for (File file : Objects.requireNonNull(folder.listFiles())) {
 
 				System.out.println(file.getName());
@@ -58,9 +71,10 @@ public class BenchmarkMapping {
 					Solver solver = ((Solver) item.right);
 
 					network.parseNetwork(input);
+					solver.setup(network, item.isBool());
 
 					start = System.nanoTime();
-					output = solver.solve(network);
+					output = solver.solve();
 					time += System.nanoTime() - start;
 
 					solver.clean();
@@ -70,7 +84,7 @@ public class BenchmarkMapping {
 				long totalTime = time / iterations;
 				int score = new ScoreComputer(input).computeScore(output);
 
-				System.out.format("%-20s" +
+				System.out.format("%-40s" +
 								"%-40s" +
 								"%-40s" +
 								"%-40s" +
@@ -78,7 +92,7 @@ public class BenchmarkMapping {
 						"total (iterations) : " + iterations,
 						"total (time) : " + totalTime,
 						"score : " + score);
-				FileWriter.writeToFile(item.right.getClass().getSimpleName(), "", "", file.getName(), totalTime);
+				FileWriter.writeMappingToFile(item.right.getClass().getSimpleName(), item.isBool(), file.getName(), totalTime, score);
 			}
 		}
 	}
