@@ -35,7 +35,7 @@ public class SnailSolverTest {
 
     @Test
     public void completeInputTest() throws IOException {
-        String input = FileReader.getFileAsString("src/main/resources/mapping/CP.in");
+        String input = FileReader.getFileAsString("src/main/resources/mapping/CP16.in");
         SnailSolver solver = new SnailSolver();
         EdgeListNetwork network = new EdgeListNetwork();
         network.parseNetwork(input);

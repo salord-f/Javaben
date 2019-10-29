@@ -30,19 +30,19 @@ public class SimpleWideTreeSolverTest {
         network.parseNetwork(input);
         String output = solver.solve(network);
         ScoreComputer computer = new ScoreComputer(input);
-        assertEquals(140, computer.computeScore(output));
+        assertEquals(94, computer.computeScore(output));
 
     }
 
     @Test
     public void completeInputTest() throws IOException {
-        String input = FileReader.getFileAsString("src/main/resources/mapping/CP.in");
+        String input = FileReader.getFileAsString("src/main/resources/mapping/CP16.in");
         SimpleWideTreeSolver solver = new SimpleWideTreeSolver();
         VertexListNetwork network = new VertexListNetwork();
         network.parseNetwork(input);
         String output = solver.solve(network);
         System.out.println(output);
         ScoreComputer computer = new ScoreComputer(input);
-        assertEquals(1056, computer.computeScore(output));
+        assertEquals(1049, computer.computeScore(output));
     }
 }

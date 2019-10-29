@@ -36,7 +36,7 @@ public class StupidSolverTest {
 
     @Test
     public void completeInputTest() throws IOException {
-        String input = FileReader.getFileAsString("src/main/resources/mapping/CP.in");
+        String input = FileReader.getFileAsString("src/main/resources/mapping/CP16.in");
         StupidSolver solver = new StupidSolver();
         EdgeListNetwork network = new EdgeListNetwork();
         network.parseNetwork(input);

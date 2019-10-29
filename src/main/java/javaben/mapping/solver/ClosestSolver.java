@@ -19,14 +19,12 @@ public class ClosestSolver extends Solver {
 
         for (Vertex vertex : ((VertexListNetwork) network).getVertices()) {
             if (!done.contains(vertex)) {
-                System.out.println(vertex.getId());
                 Position position = super.getClosestFree(offset, offset);
                 done.add(vertex);
                 super.build(position.getX(), position.getY(), vertex);
                 positionCounters.put(position, 1);
                 for (Vertex neighbour : vertex.getAdjacents()) {
                     if (!done.contains(neighbour)) {
-                        System.out.println(neighbour.getId());
                         Position neighbourPosition = super.getClosestFree(position.getX(), position.getY());
                         super.build(neighbourPosition.getX(), neighbourPosition.getY(), neighbour);
                         positionCounters.put(neighbourPosition, 1);

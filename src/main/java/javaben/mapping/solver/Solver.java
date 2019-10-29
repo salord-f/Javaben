@@ -72,7 +72,7 @@ public abstract class Solver {
 		if (formerSize == null) {
 			newSize = new Size(newPosition.getX(), newPosition.getY(), newPosition.getX(), newPosition.getY());
 		} else {
-			newSize = new Size(Math.min(newPosition.getX(), formerSize.getMinX()), Math.min(newPosition.getY(), formerSize.getMinY()), Math.min(newPosition.getX(), formerSize.getMaxX()), Math.min(newPosition.getY(), formerSize.getMaxY()));
+			newSize = new Size(Math.min(newPosition.getX(), formerSize.getMinX()), Math.min(newPosition.getY(), formerSize.getMinY()), Math.max(newPosition.getX(), formerSize.getMaxX()), Math.max(newPosition.getY(), formerSize.getMaxY()));
 			score += (newSize.getSizeScore() - formerSize.getSizeScore());
 		}
 

@@ -2,11 +2,10 @@ package javaben.mapping;
 
 import javaben.io.FileReader;
 import javaben.io.FileWriter;
+import javaben.mapping.network.EdgeListNetwork;
 import javaben.mapping.network.Network;
 import javaben.mapping.network.VertexListNetwork;
-import javaben.mapping.solver.SimpleTightTreeSolver;
-import javaben.mapping.solver.SimpleWideTreeSolver;
-import javaben.mapping.solver.Solver;
+import javaben.mapping.solver.*;
 import javaben.structure.Tuple;
 
 import java.io.File;
@@ -31,11 +30,13 @@ public class BenchmarkMapping {
 		long seconds = 10;
 
 		List<Tuple<Network, Solver>> list = new ArrayList<>();
-//		list.add(new Tuple<>(new EdgeListNetwork(), new StupidSolver()));
-//		list.add(new Tuple<>(new EdgeListNetwork(), new SnailSolver()));
-//		list.add(new Tuple<>(new EdgeListNetwork(), new ClosestSolver()));
+		list.add(new Tuple<>(new EdgeListNetwork(), new StupidSolver()));
+		list.add(new Tuple<>(new EdgeListNetwork(), new SnailSolver()));
+		list.add(new Tuple<>(new VertexListNetwork(), new ClosestSolver()));
         list.add(new Tuple<>(new VertexListNetwork(), new SimpleWideTreeSolver()));
         list.add(new Tuple<>(new VertexListNetwork(), new SimpleTightTreeSolver()));
+		list.add(new Tuple<>(new VertexListNetwork(), new NeighborBFSTreeSolver()));
+		list.add(new Tuple<>(new VertexListNetwork(), new NeighborDFSTreeSolver()));
 
 
 		for (Tuple item : list) {

@@ -36,7 +36,7 @@ public class ClosestSolverTest {
 
     @Test
     public void completeInputTest() throws IOException {
-        String input = FileReader.getFileAsString("src/main/resources/mapping/CP.in");
+        String input = FileReader.getFileAsString("src/main/resources/mapping/CP16.in");
         Solver solver = new ClosestSolver();
         VertexListNetwork network = new VertexListNetwork();
         network.parseNetwork(input);
