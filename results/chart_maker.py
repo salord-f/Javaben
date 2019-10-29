@@ -41,9 +41,6 @@ for file_cat in files_cat.keys():
 
     g = sns.catplot(x='Input', y='Score', hue='Alg', data=data,
                     height=6, kind='bar', palette='muted', ci=None, legend=False)
-    for ax in g.axes.flat:
-        mdr = ax.yaxis
-        ax.yaxis._set_scale('linear', basey=10)
     g.despine(left=True)
     g.set_ylabels('Score')
     plt.legend(loc='upper right')
@@ -51,9 +48,7 @@ for file_cat in files_cat.keys():
 
     g = sns.catplot(x='Input', y='Time', hue='Alg', data=data,
                     height=6, kind='bar', palette='muted', ci=None, legend=False)
-    for ax in g.axes.flat:
-        ax.yaxis._set_scale('log', basey=10)
     g.despine(left=True)
-    g.set_ylabels('Time')
+    g.set_ylabels('Time (ns)')
     plt.legend(loc='upper right')
     plt.savefig('times_%s.png' % name)
