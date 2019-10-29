@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class NeighborDFSTreeSolver extends AbstractNeighborTreeSolver {
+public class GreedyNeighborDFSSolver extends AbstractGreedyNeighborSolver {
 
 	@Override
 	public List<Vertex> verticesRoute(List<Vertex> original) {

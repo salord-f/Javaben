@@ -12,7 +12,7 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public abstract class AbstractNeighborTreeSolver extends Solver {
+public abstract class AbstractGreedyNeighborSolver extends Solver {
 	private final int N_NEAREST = 3;
 	private List<Vertex> vertices;
 

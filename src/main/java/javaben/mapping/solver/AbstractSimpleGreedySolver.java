@@ -9,7 +9,7 @@ import javaben.structure.Tuple;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public abstract class AbstractSimpleTreeSolver extends Solver {
+public abstract class AbstractSimpleGreedySolver extends Solver {
 
 	protected int maxSize;
 	private List<Vertex> vertices;

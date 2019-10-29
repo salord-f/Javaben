@@ -33,18 +33,18 @@ public class BenchmarkMapping {
 		list.add(new Truple<>(new EdgeListNetwork(), new LineSolver(), false));
 		list.add(new Truple<>(new EdgeListNetwork(), new SnailSolver(), false));
 		list.add(new Truple<>(new VertexListNetwork(), new ClosestSolver(), false));
-		list.add(new Truple<>(new VertexListNetwork(), new SimpleWideTreeSolver(), false));
-		list.add(new Truple<>(new VertexListNetwork(), new SimpleTightTreeSolver(), false));
-		list.add(new Truple<>(new VertexListNetwork(), new NeighborBFSTreeSolver(), false));
-		list.add(new Truple<>(new VertexListNetwork(), new NeighborDFSTreeSolver(), false));
+		list.add(new Truple<>(new VertexListNetwork(), new SimpleWideGreedySolver(), false));
+		list.add(new Truple<>(new VertexListNetwork(), new SimpleTightGreedySolver(), false));
+		list.add(new Truple<>(new VertexListNetwork(), new GreedyNeighborBFSSolver(), false));
+		list.add(new Truple<>(new VertexListNetwork(), new GreedyNeighborDFSSolver(), false));
 
 		list.add(new Truple<>(new EdgeListNetwork(), new LineSolver(), true));
 		list.add(new Truple<>(new EdgeListNetwork(), new SnailSolver(), true));
 		list.add(new Truple<>(new VertexListNetwork(), new ClosestSolver(), true));
-		list.add(new Truple<>(new VertexListNetwork(), new SimpleWideTreeSolver(), true));
-		list.add(new Truple<>(new VertexListNetwork(), new SimpleTightTreeSolver(), true));
-		list.add(new Truple<>(new VertexListNetwork(), new NeighborBFSTreeSolver(), true));
-		list.add(new Truple<>(new VertexListNetwork(), new NeighborDFSTreeSolver(), true));
+		list.add(new Truple<>(new VertexListNetwork(), new SimpleWideGreedySolver(), true));
+		list.add(new Truple<>(new VertexListNetwork(), new SimpleTightGreedySolver(), true));
+		list.add(new Truple<>(new VertexListNetwork(), new GreedyNeighborBFSSolver(), true));
+		list.add(new Truple<>(new VertexListNetwork(), new GreedyNeighborDFSSolver(), true));
 
 
 		for (Truple item : list) {

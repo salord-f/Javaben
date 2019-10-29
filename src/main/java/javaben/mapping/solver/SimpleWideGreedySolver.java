@@ -1,6 +1,6 @@
 package javaben.mapping.solver;
 
-public class SimpleWideTreeSolver extends AbstractSimpleTreeSolver {
+public class SimpleWideGreedySolver extends AbstractSimpleGreedySolver {
 	@Override
 	public String solve() {
 		maxSize = network.getVerticesCount();
