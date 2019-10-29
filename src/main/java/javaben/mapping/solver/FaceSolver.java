@@ -19,7 +19,7 @@ public class FaceSolver extends Solver {
 			vertices.add(new FaceVertex(vertex));
 			System.out.println(vertex.getId());
 		}
-		int offset = network.offset();
+		int offset = network.getVerticesCount();
 		//vertices.forEach(System.out::println);
 
 		positions.put(vertices.get(0), Position.builder().x(offset).y(offset).build());

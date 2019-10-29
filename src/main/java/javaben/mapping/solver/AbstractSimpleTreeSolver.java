@@ -10,13 +10,13 @@ import javaben.structure.Tuple;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class SimpleTreeSolver extends Solver {
+public class AbstractSimpleTreeSolver extends Solver {
+
+    protected int maxSize;
     private List<Vertex> vertices;
-    private int maxSize;
 
     @Override
     public String solve(Network network) {
-        maxSize = network.getVerticesCount();
         VertexListNetwork vertexListNetwork = (VertexListNetwork) network;
         vertices = vertexListNetwork.getWeightedVertex().stream().map(v -> vertexListNetwork.getVertices().get(v)).collect(Collectors.toList());
         solve_r(vertices.get(0), null);

@@ -8,7 +8,7 @@ public class SnailSolver extends Solver {
     @Override
     public String solve(Network network) {
         int x = 0, y = 0, dx = 0, dy = -1;
-        int offset = network.offset();
+        int offset = network.getVerticesCount();
 
         for (int i = 0; i < network.getVerticesCount(); ) {
             if (-offset / 2 < x && x <= offset / 2 && -offset < y && y <= offset) {

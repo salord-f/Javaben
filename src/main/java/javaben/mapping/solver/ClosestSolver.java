@@ -14,7 +14,7 @@ public class ClosestSolver extends Solver {
 
     @Override
     public String solve(Network network) {
-        int offset = network.offset();
+        int offset = network.getVerticesCount();
 
 
         for (Vertex vertex : ((VertexListNetwork) network).getVertices()) {
