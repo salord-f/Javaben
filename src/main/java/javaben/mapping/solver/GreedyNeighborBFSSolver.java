@@ -17,7 +17,6 @@ public class GreedyNeighborBFSSolver extends AbstractGreedyNeighborSolver {
 
 		while (!original.isEmpty()) {
 			toExplore.add(original.get(0));
-			original.remove(0);
 			breadthFirstSearch(toExplore, explored, ordered, original);
 		}
 
@@ -34,6 +33,8 @@ public class GreedyNeighborBFSSolver extends AbstractGreedyNeighborSolver {
 		for (Vertex vertex : toExplore) {
 			exploreNext.addAll(getUnexploredAdj(vertex, explored));
 		}
+
+		toExplore.clear();
 
 		if (!exploreNext.isEmpty()) {
 			breadthFirstSearch(exploreNext, explored, ordered, original);
