@@ -28,6 +28,11 @@ public class EdgeListNetwork extends Network {
 
 	public List<Integer> getWeightedVertex() {
 		Map<Integer, Integer> vertexCount = new LinkedHashMap<>();
+		Set<Integer> verticesLeft = new HashSet<>();
+
+		for (int i = 0; i < verticesCount; i++) {
+			verticesLeft.add(i);
+		}
 
 		for (Edge edge : edges) {
 			vertexCount.merge(edge.getVertices()[0], 1, Integer::sum);
@@ -38,6 +43,9 @@ public class EdgeListNetwork extends Network {
 		vertexCount.entrySet().stream()
 				.sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
 				.forEach(v -> ordered.add(v.getKey()));
+
+		verticesLeft.removeAll(ordered);
+		ordered.addAll(verticesLeft);
 
 		return ordered;
 	}

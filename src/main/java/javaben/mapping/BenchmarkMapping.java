@@ -2,10 +2,10 @@ package javaben.mapping;
 
 import javaben.io.FileReader;
 import javaben.io.FileWriter;
+import javaben.mapping.network.EdgeListNetwork;
 import javaben.mapping.network.Network;
 import javaben.mapping.network.VertexListNetwork;
-import javaben.mapping.solver.GreedyNeighborDFSSolver;
-import javaben.mapping.solver.Solver;
+import javaben.mapping.solver.*;
 import javaben.structure.Truple;
 
 import java.io.File;
@@ -30,7 +30,7 @@ public class BenchmarkMapping {
 		long seconds = 10;
 
 		List<Truple<Network, Solver>> list = new ArrayList<>();
-		/*list.add(new Truple<>(new EdgeListNetwork(), new LineSolver(), false));
+		list.add(new Truple<>(new EdgeListNetwork(), new LineSolver(), false));
 		list.add(new Truple<>(new EdgeListNetwork(), new SnailSolver(), false));
 		list.add(new Truple<>(new VertexListNetwork(), new ClosestSolver(), false));
 		list.add(new Truple<>(new VertexListNetwork(), new SimpleWideGreedySolver(), false));
@@ -43,7 +43,7 @@ public class BenchmarkMapping {
 		list.add(new Truple<>(new VertexListNetwork(), new ClosestSolver(), true));
 		list.add(new Truple<>(new VertexListNetwork(), new SimpleWideGreedySolver(), true));
 		list.add(new Truple<>(new VertexListNetwork(), new SimpleTightGreedySolver(), true));
-		list.add(new Truple<>(new VertexListNetwork(), new GreedyNeighborBFSSolver(), true));*/
+		list.add(new Truple<>(new VertexListNetwork(), new GreedyNeighborBFSSolver(), true));
 		list.add(new Truple<>(new VertexListNetwork(), new GreedyNeighborDFSSolver(), true));
 
 
