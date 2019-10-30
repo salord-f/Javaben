@@ -38,8 +38,8 @@ public class Main {
         int maxPow = 20;
 
         List<Callable> list = new ArrayList<>();
-        list.add(new Addition());
-        list.add(new Multiplication());
+        //list.add(new Addition());
+        //list.add(new Multiplication());
 
         // Warmup
         for (Callable item : list) {

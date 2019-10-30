@@ -1,7 +1,6 @@
 package javaben.io;
 
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -22,12 +21,25 @@ public class FileWriter {
 	}
 
 	public static void writeMappingToFile(String name, boolean optimized, String input, long time, int score) {
-        String filename = (name + "_" + optimized + ".si5").toLowerCase();
-        Path path = Paths.get("results/" + filename);
+		String filename = (name + "_" + optimized + ".si5").toLowerCase();
+		Path path = Paths.get("results/" + filename);
 
 		try (BufferedWriter writer = Files.newBufferedWriter(path, StandardOpenOption.CREATE, StandardOpenOption.APPEND)) {
 			PrintWriter printWriter = new PrintWriter(writer);
 			printWriter.println(input.split("\\.")[0] + " " + time + " " + score);
+		} catch (Exception e) {
+			System.out.println("Error while writing file.");
+			e.printStackTrace();
+		}
+	}
+
+	public static void writeOutputToFile(String algo, String inputName, int score, String output) {
+		String filename = (algo + "_" + inputName.split("\\.")[0] + "_" + score + ".si5").toLowerCase();
+		Path path = Paths.get("results/" + filename);
+
+		try (BufferedWriter writer = Files.newBufferedWriter(path, StandardOpenOption.CREATE, StandardOpenOption.APPEND)) {
+			PrintWriter printWriter = new PrintWriter(writer);
+			printWriter.println(output);
 		} catch (Exception e) {
 			System.out.println("Error while writing file.");
 			e.printStackTrace();
