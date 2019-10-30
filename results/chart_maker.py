@@ -20,7 +20,7 @@ files_cat = {
 sns.set(style='whitegrid')
 
 for file_cat in files_cat.keys():
-    fig, ax = plt.subplots(figsize=(7, 7))
+    fig, ax = plt.subplots()
     plt.title(file_cat)
 
     data = pd.DataFrame(columns=['Alg', 'Input', 'Score', 'Time'])
@@ -37,11 +37,13 @@ for file_cat in files_cat.keys():
 
         data = data.append(pd.DataFrame(data={'Alg': [alg] * n, 'Input': inputs, 'Score': scores, 'Time': times})).reset_index(drop=True)
 
-    name = 'optimized' if 'Without' in file_cat else ''
+    name = 'raw' if 'Without' in file_cat else 'optimized'
 
     g = sns.catplot(x='Input', y='Score', hue='Alg', data=data,
                     height=6, kind='bar', palette='muted', ci=None, legend=False)
     g.despine(left=True)
+    g.axes[0, 0].set_yscale('log')
+    g.axes[0, 0].set_ylim(10, 10 ** 6)
     g.set_ylabels('Score')
     plt.legend(loc='upper right')
     plt.savefig('scores_%s.png' % name)
@@ -49,6 +51,8 @@ for file_cat in files_cat.keys():
     g = sns.catplot(x='Input', y='Time', hue='Alg', data=data,
                     height=6, kind='bar', palette='muted', ci=None, legend=False)
     g.despine(left=True)
+    g.axes[0, 0].set_yscale('log')
+    g.axes[0, 0].set_ylim(10 ** 3, 10 ** 8)
     g.set_ylabels('Time (ns)')
-    plt.legend(loc='upper right')
+    plt.legend(loc='upper left')
     plt.savefig('times_%s.png' % name)
