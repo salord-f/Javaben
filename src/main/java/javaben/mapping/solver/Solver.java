@@ -22,14 +22,6 @@ public abstract class Solver {
 	protected Network network;
 	protected boolean optimized;
 
-	public <K, V> Stream<K> keys(Map<K, V> map, V value) {
-		return map
-				.entrySet()
-				.stream()
-				.filter(entry -> value.equals(entry.getValue()))
-				.map(Map.Entry::getKey);
-	}
-
 	public void setup(Network network, boolean optimized) {
 		this.network = network;
 		this.optimized = optimized;
@@ -59,7 +51,6 @@ public abstract class Solver {
 		}
 
 		return builder.toString();
-
 	}
 
 	public Tuple<Integer, Size> additionalScoreAndNewSize(Position newPosition, Vertex v, Size formerSize) {
