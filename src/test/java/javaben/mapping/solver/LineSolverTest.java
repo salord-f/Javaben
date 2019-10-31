@@ -1,7 +1,6 @@
 package javaben.mapping.solver;
 
 import javaben.io.FileReader;
-import javaben.mapping.Position;
 import javaben.mapping.ScoreComputer;
 import javaben.mapping.network.EdgeListNetwork;
 import org.junit.Test;
@@ -46,19 +45,5 @@ public class LineSolverTest {
         String output = solver.solve();
         ScoreComputer computer = new ScoreComputer(input);
         assertEquals(8625, computer.computeScore(output));
-    }
-
-    @Test
-    public void closestFreeTest() {
-        String input = "5 5\n0 4\n1 0\n2 1\n3 2\n4 3\n";
-        LineSolver solver = new LineSolver();
-        EdgeListNetwork network = new EdgeListNetwork();
-        network.parseNetwork(input);
-        solver.setup(network, false);
-        String output = solver.solve();
-        ScoreComputer computer = new ScoreComputer(input);
-        assertEquals(34, computer.computeScore(output));
-        Position position = solver.getClosestFree(0, 0);
-        assertEquals(Position.builder().x(1).y(0).build(), position);
     }
 }

@@ -24,7 +24,7 @@ public class ScoreComputer {
 		}
 	}
 
-	public int computeScore(String output) {
+	public long computeScore(String output) {
 		coords = Arrays.stream(output.split("\n"))
 				.map(line -> Arrays.asList(Integer.parseInt(line.split(" ")[0]), Integer.parseInt(line.split(" ")[1])))
 				.collect(Collectors.toList());
@@ -33,7 +33,7 @@ public class ScoreComputer {
 			throw new IllegalStateException(String.format("%d vertices specified but %d vertices found in output.", vertexCount, coords.size()));
 		}
 
-		int score = 0;
+		long score = 0L;
 
 		Map<List<Integer>, Long> counters = coords.stream()
 				.collect(Collectors.groupingBy(edge -> edge, Collectors.counting()));

@@ -33,9 +33,8 @@ public class FileWriter {
 		}
 	}
 
-	public static void writeOutputToFile(String algo, String inputName, int score, String output) {
-		String filename = (algo + "_" + inputName.split("\\.")[0] + "_" + score + ".si5").toLowerCase();
-		Path path = Paths.get("results/" + filename);
+    public static void writeOutputToFile(String filename, String output) {
+        Path path = Paths.get(filename);
 
 		try (BufferedWriter writer = Files.newBufferedWriter(path, StandardOpenOption.CREATE, StandardOpenOption.APPEND)) {
 			PrintWriter printWriter = new PrintWriter(writer);

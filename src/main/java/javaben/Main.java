@@ -1,7 +1,5 @@
 package javaben;
 
-import javaben.basic.Addition;
-import javaben.basic.Multiplication;
 import javaben.mapping.BenchmarkMapping;
 import javaben.sort.BenchmarkSort;
 
@@ -17,18 +15,12 @@ public class Main {
             System.out.println(arg);
         }
 
-        File folder = new File("./results/");
+        String alg = args[0];
+        boolean opt = Boolean.parseBoolean(args[1]);
+
+        File folder = new File("./results_" + alg + "_" + opt + "/");
         if (!folder.exists()) {
             folder.mkdir();
-        }
-
-        if (args.length >= 2) {
-            System.out.println("Wrong number of arguments, expected structure name and method call");
-            for (File f : folder.listFiles()) {
-                if ((args[0] + "_" + args[1] + "_" + args[2] + ".si5").toLowerCase().equals(f.getName())) {
-                    f.delete();
-                }
-            }
         }
 
         long seed = 516310114;
@@ -49,7 +41,7 @@ public class Main {
 
         //BenchmarkSort.benchmarkSort(maxPow, seed);
         //BenchmarkStructure.benchmarkStructure(seed, maxPow, args);
-        BenchmarkMapping.benchmark();
+        BenchmarkMapping.benchmark(alg, opt);
 
     }
 
