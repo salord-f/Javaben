@@ -29,15 +29,7 @@ public class Main {
 
         int maxPow = 20;
 
-        List<Callable> list = new ArrayList<>();
-        //list.add(new Addition());
-        //list.add(new Multiplication());
-
-        // Warmup
-        for (Callable item : list) {
-            Result result = BenchmarkSort.benchOne(item, null, seconds, 1, seed, Generator.Type.UNSORTED);
-            System.out.format("%-20s%-40s%s%n", item.getClass().getSimpleName() + " :", "total (iterations) : " + result.iterations, "total (time) : " + result.time / result.iterations);
-        }
+        //Warmup.warmup(seconds, seed);
 
         //BenchmarkSort.benchmarkSort(maxPow, seed);
         //BenchmarkStructure.benchmarkStructure(seed, maxPow, args);

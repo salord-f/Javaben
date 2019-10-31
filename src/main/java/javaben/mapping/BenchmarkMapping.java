@@ -81,7 +81,8 @@ public class BenchmarkMapping {
 
 			System.out.format("%-40s" +
 							"%-40s" +
-							"%n", conf.right.getClass().getSimpleName() + " :",
+							"%n",
+					conf.right.getClass().getSimpleName() + " :",
 					"score : " + score);
 			FileWriter.writeOutputToFile(filename, output);
 		}
