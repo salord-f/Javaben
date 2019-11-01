@@ -33,15 +33,24 @@ public class FileWriter {
 		}
 	}
 
-    public static void writeOutputToFile(String filename, String output) {
+    public static void writeOutputToFile(String filename, String output, long score, long time) {
         Path path = Paths.get(filename);
+        Path resultsPath = Paths.get(filename.split("/")[0] + "/results.si5");
 
 		try (BufferedWriter writer = Files.newBufferedWriter(path, StandardOpenOption.CREATE, StandardOpenOption.APPEND)) {
 			PrintWriter printWriter = new PrintWriter(writer);
 			printWriter.println(output);
 		} catch (Exception e) {
-			System.out.println("Error while writing file.");
+            System.out.println("Error while writing output file.");
 			e.printStackTrace();
 		}
+
+        try (BufferedWriter writer = Files.newBufferedWriter(resultsPath, StandardOpenOption.CREATE, StandardOpenOption.APPEND)) {
+            PrintWriter printWriter = new PrintWriter(writer);
+            printWriter.println(filename.substring(0, filename.length() - 4).split("/")[1] + " " + score + " " + time);
+        } catch (Exception e) {
+            System.out.println("Error while writing results file.");
+            e.printStackTrace();
+        }
 	}
 }

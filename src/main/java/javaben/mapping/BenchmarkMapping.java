@@ -14,77 +14,96 @@ import java.util.Objects;
 
 public class BenchmarkMapping {
 
-	public static void benchmark(String alg, boolean opt) {
-		try {
-			launch(alg, opt);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+    public static void benchmark(String alg, boolean opt) {
+        try {
+            launch(alg, opt);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
-	private static void launch(String alg, boolean opt) throws IOException {
-		File folder = new File("src/main/resources/mapping/");
+    private static void launch(String alg, boolean opt) throws IOException {
+        File folder = new File("src/main/resources/mapping/");
 
-		Truple<Network, Solver> conf;
+        Truple<Network, Solver> conf;
 
-		switch (alg) {
-			case "line":
-				conf = new Truple<>(new EdgeListNetwork(), new LineSolver(), opt);
-				break;
-			case "snail":
-				conf = new Truple<>(new EdgeListNetwork(), new SnailSolver(), opt);
-				break;
-			case "closest":
-				conf = new Truple<>(new VertexListNetwork(), new ClosestSolver(), opt);
-				break;
-			case "wide":
-				conf = new Truple<>(new VertexListNetwork(), new SimpleWideGreedySolver(), opt);
-				break;
-			case "tight":
-				conf = new Truple<>(new VertexListNetwork(), new SimpleTightGreedySolver(), opt);
-				break;
-			case "bfs":
-				conf = new Truple<>(new VertexListNetwork(), new GreedyNeighborBFSSolver(), opt);
-				break;
-			case "dfs":
-				conf = new Truple<>(new VertexListNetwork(), new GreedyNeighborDFSSolver(), opt);
-				break;
-			default:
-				throw new IllegalArgumentException(String.format("Algorithm %s does not exist!", alg));
-		}
+        switch (alg) {
+            case "line":
+                conf = new Truple<>(new EdgeListNetwork(), new LineSolver(), opt);
+                break;
+            case "snail":
+                conf = new Truple<>(new EdgeListNetwork(), new SnailSolver(), opt);
+                break;
+            case "closest":
+                conf = new Truple<>(new VertexListNetwork(), new ClosestSolver(), opt);
+                break;
+            case "wide":
+                conf = new Truple<>(new VertexListNetwork(), new SimpleWideGreedySolver(), opt);
+                break;
+            case "tight":
+                conf = new Truple<>(new VertexListNetwork(), new SimpleTightGreedySolver(), opt);
+                break;
+            case "bfs":
+                conf = new Truple<>(new VertexListNetwork(), new GreedyNeighborBFSSolver(), opt);
+                break;
+            case "dfs":
+                conf = new Truple<>(new VertexListNetwork(), new GreedyNeighborDFSSolver(), opt);
+                break;
+            default:
+                throw new IllegalArgumentException(String.format("Algorithm %s does not exist!", alg));
+        }
 
+        long seconds = 10;
 
+        for (File file : Objects.requireNonNull(folder.listFiles())) {
+            String filename = ("results_" + alg + "_" + opt + "/" + file.getName().substring(2, file.getName().length() - 2) + "ans");
+            File oldFile = new File(filename);
+            if (oldFile.exists()) {
+                oldFile.delete();
+            }
 
-		for (File file : Objects.requireNonNull(folder.listFiles())) {
-			String filename = ("results_" + alg + "_" + opt + "/" + file.getName().substring(2, file.getName().length() - 2) + "ans").toLowerCase();
-			File oldFile = new File(filename);
-			if (oldFile.exists()) {
-				oldFile.delete();
-			}
+            System.out.println(file.getName());
 
-			System.out.println(file.getName());
+            long start, time = 0;
+            long t0 = System.nanoTime();
+            int iterations = 0;
 
-			String input = FileReader.getFileAsString(file.getAbsolutePath());
+            String input = FileReader.getFileAsString(file.getAbsolutePath());
+            String output = null;
 
-			Network network = conf.left;
-			Solver solver = conf.right;
+            while (System.nanoTime() - t0 < seconds * 1000000000) {
+                iterations++;
 
-			network.parseNetwork(input);
-			solver.setup(network, conf.isBool());
+                Network network = conf.left;
+                Solver solver = conf.right;
 
-			String output = solver.solve();
+                network.parseNetwork(input);
+                solver.setup(network, conf.isBool());
 
-			solver.clean();
-			network.clean();
+                start = System.nanoTime();
+                output = solver.solve();
+                time += System.nanoTime() - start;
 
-			long score = new ScoreComputer(input).computeScore(output);
+                solver.clean();
+                network.clean();
+            }
 
-			System.out.format("%-40s" +
-							"%-40s" +
-							"%n",
-					conf.right.getClass().getSimpleName() + " :",
-					"score : " + score);
-			FileWriter.writeOutputToFile(filename, output);
-		}
-	}
+            long totalTime = time / iterations;
+            long score = new ScoreComputer(input).computeScore(output);
+
+            System.out.format("%-40s" +
+                            "%-40s" +
+                            "%-40s" +
+                            "%-40s" +
+                            "%n", conf.right.getClass().getSimpleName() + " :",
+                    "Iterations: " + iterations,
+                    "Time per iteration: " + totalTime,
+                    "Score : " + score);
+            FileWriter.writeOutputToFile(filename, output, score, totalTime);
+
+            if (iterations == 1) {
+                break;
+            }
+        }
+    }
 }

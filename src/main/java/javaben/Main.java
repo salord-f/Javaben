@@ -1,11 +1,8 @@
 package javaben;
 
 import javaben.mapping.BenchmarkMapping;
-import javaben.sort.BenchmarkSort;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Main {
 
@@ -23,13 +20,13 @@ public class Main {
             folder.mkdir();
         }
 
-        long seed = 516310114;
+        long seed = 516310114L;
 
         long seconds = 10;
 
         int maxPow = 20;
 
-        //Warmup.warmup(seconds, seed);
+        Warmup.warmup(seconds, seed);
 
         //BenchmarkSort.benchmarkSort(maxPow, seed);
         //BenchmarkStructure.benchmarkStructure(seed, maxPow, args);
