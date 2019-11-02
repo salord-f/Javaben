@@ -6,11 +6,10 @@ Created on Tue Oct  1 17:46:11 2019
 """
 
 import glob
-import numpy as np
-import seaborn as sns
-import pandas as pd
 import matplotlib.pyplot as plt
-from operator import methodcaller
+import numpy as np
+import pandas as pd
+import seaborn as sns
 
 files = [file for file in glob.iglob('**/results.si5', recursive=True)]
 
@@ -40,38 +39,22 @@ for family in data.Family.unique():
     for opt in data.Opt.unique():
         data_f = data[(data['Family'] == family) & (data['Opt'] == opt)]
 
-        fig, ax = plt.subplots(figsize=(7, 7))
+        _, ax = plt.subplots(figsize=(7, 7))
         plt.title('Scores for %s family with%s optimization' % (family, '' if opt == 'true' else 'out'))
         ax.set_xscale('log', basex=10)
         ax.set_yscale('log', basey=10)
         sns.lineplot(x='Size', y='Score', hue='Alg', data=data_f, ax=ax)
+        ax.set_xlim([10 ** 1, 10 ** 7])
+        ax.set_ylim([10 ** 1, 10 ** 19])
         ax.set(xlabel='Size (number of vertices)', ylabel='Score (sum of penalties)')
         plt.savefig('scores_%s_%s.png' % (family, opt))
 
-        fig, ax = plt.subplots(figsize=(7, 7))
+        _, ax = plt.subplots(figsize=(7, 7))
         plt.title('Times for %s family with%s optimization' % (family, '' if opt == 'true' else 'out'))
         ax.set_xscale('log', basex=10)
         ax.set_yscale('log', basey=10)
         sns.lineplot(x='Size', y='Time', hue='Alg', data=data_f, ax=ax)
+        ax.set_xlim([10 ** 1, 10 ** 7])
+        ax.set_ylim([10 ** 3, 10 ** 11])
         ax.set(xlabel='Size (number of vertices)', ylabel='Time (ns)')
         plt.savefig('times_%s_%s.png' % (family, opt))
-
-# name = 'raw' if 'Without' in file_cat else 'optimized'
-#
-# g = sns.catplot(x='Input', y='Score', hue='Alg', data=data,
-#                 height=6, kind='bar', palette='muted', ci=None, legend=False)
-# g.despine(left=True)
-# g.axes[0, 0].set_yscale('log')
-# g.axes[0, 0].set_ylim(10, 10 ** 6)
-# g.set_ylabels('Score')
-# plt.legend(loc='upper right')
-# plt.savefig('scores_%s.png' % name)
-#
-# g = sns.catplot(x='Input', y='Time', hue='Alg', data=data,
-#                 height=6, kind='bar', palette='muted', ci=None, legend=False)
-# g.despine(left=True)
-# g.axes[0, 0].set_yscale('log')
-# g.axes[0, 0].set_ylim(10 ** 3, 10 ** 8)
-# g.set_ylabels('Time (ns)')
-# plt.legend(loc='upper left')
-# plt.savefig('times_%s.png' % name)
